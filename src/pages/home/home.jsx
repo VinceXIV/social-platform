@@ -1,11 +1,11 @@
 import "./home.css"
-import Content from "../../sections/content/content"
+import Posts from "../../sections/posts/posts"
 
 function Home(){
     return (
         <div id="page-home" className="page">
             <div className="container">
-                <Content />
+                <Posts />
             </div>
         </div>
     )

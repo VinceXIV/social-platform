@@ -1,11 +1,11 @@
-import "./content.css"
+import "./posts.css"
 import Post from "../../components/post/post";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Paywall from "../../components/paywall/paywall";
 import { showPaywall } from "../../redux/paywall";
 
-function Content(){
+function Posts(){
     const {loggedIn, userType } = useSelector(state => state.user)
     const posts = useSelector(state => state.posts.posts)
     const paywalled = useSelector(state => state.paywall.paywalled)
@@ -63,4 +63,4 @@ function Content(){
     )
 }
 
-export default Content;
+export default Posts;
