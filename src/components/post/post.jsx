@@ -27,6 +27,8 @@ function Post({post}){
         // more prominent/pronounced. The styling are in the css file
         if(paywalled){
             postRef.current.classList.add('paywalled')
+        }else{
+            postRef.current.classList.remove('paywalled')
         }
     }, [setComments, paywalled])
 

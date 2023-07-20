@@ -3,7 +3,7 @@ import Post from "../../components/post/post";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Paywall from "../../components/paywall/paywall";
-import { paywall } from "../../redux/paywall";
+import { showPaywall } from "../../redux/paywall";
 
 function Content(){
     const {loggedIn, userType } = useSelector(state => state.user)
@@ -29,7 +29,7 @@ function Content(){
         const scrolledToBottom = parseInt(window.scrollY) + 600 >= parseInt(postsSection.scrollHeight)
 
         if((!loggedIn || userType === 'regular') && scrolledToBottom){
-            dispatch(paywall())
+            dispatch(showPaywall())
         }
     }
 

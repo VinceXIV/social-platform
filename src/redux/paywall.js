@@ -10,17 +10,17 @@ export const counterSlice = createSlice({
   initialState,
 
   reducers: {
-    paywall: (state) => {
+    showPaywall: (state) => {
         state.paywalled = true
     },
 
-    unpaywall: (state) => {
+    unshowPaywall: (state) => {
         state.paywalled = false
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const {paywall, unpaywall} = counterSlice.actions
+export const {showPaywall, unshowPaywall} = counterSlice.actions
 
 export default counterSlice.reducer

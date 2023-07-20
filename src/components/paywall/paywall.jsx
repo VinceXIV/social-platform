@@ -1,13 +1,16 @@
 import Button from "../../elements/button/button";
 import "./paywall.css"
+import { unshowPaywall } from "../../redux/paywall";
+import { useDispatch } from "react-redux";
 
 function Paywall(){
+    const dispatch = useDispatch()
     function handlePaymentClick(){
 
     }
 
     return (
-        <div id="paywall">
+        <div id="paywall" onClick={()=>dispatch(unshowPaywall())}>
             <div className="paywall-content">
                 <h1>Join Premium</h1>
                 <div className="paywall-details">
