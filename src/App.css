@@ -8,4 +8,10 @@
 
 .page {
     min-height: calc(100vh - var(--navbar-height));
+    padding: 1vw 2vw;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
 }
