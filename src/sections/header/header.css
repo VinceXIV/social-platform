@@ -2,4 +2,24 @@
     width: 100vw;
     height: var(--navbar-height);
     background-color: red;
+    display: flex;
+    align-items: center;
+}
+
+#section-header .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#section-header .actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+#section-header .menu {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    cursor: pointer;
 }
