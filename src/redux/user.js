@@ -8,7 +8,6 @@ const initialState = {
   loggedIn: localStorageData['loggedIn'] || false,
   userDetails: localStorageData['userDetails'] || {},
   userType: localStorageData['userType'] || 'regular', // User can be regular or premium
-  activePagePath: localStorageData['activePagePath'] || '/',
 }
 
 export const counterSlice = createSlice({

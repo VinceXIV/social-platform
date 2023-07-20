@@ -7,7 +7,7 @@ import { createSlice } from '@reduxjs/toolkit'
 // 1 means we have sent it and it is being worked on
 // 2 means it has been completed
 const initialState = {
-    login: 0
+    login: 0,
 }
 
 export const counterSlice = createSlice({
@@ -27,8 +27,6 @@ export const counterSlice = createSlice({
                 state[activity] = 0
             }, 3000)
         }
-
-        console.log(state)
     }
   },
 })
