@@ -1,13 +1,44 @@
 import { useState } from "react";
 import "./loginForm.css"
 import Button from "../../elements/button/button";
+import apiHost from "../../utilities/api";
+import { login } from "../../redux/user";
+import { goToNextStage } from "../../redux/request";
+import { useDispatch, useSelector } from "react-redux";
 
 function LoginForm(){
     const [formData, setFormData] = useState({username: '', password: ''})
+    const dispatch = useDispatch()
 
-    function handleFormSubmit(e){
+    async function handleFormSubmit(e){
         e.preventDefault()
-        console.log(formData)
+
+        // Go to the next login stage. In this case move from
+        // "idle"/user filling in details to "processing" user details
+        dispatch(goToNextStage('login'))
+
+
+        // The zipcode is used for password here
+        const endpoint = `users?username=${formData.username}&zipcode=${formData.password}`
+
+        const res = await fetch(`${apiHost}/${endpoint}`)
+        if(res.ok){
+            // This will return more details about the user who has just logged in
+            // the data will be an array with one object corresponding to the user inside it
+            const user = await res.json().then(data => data)
+
+            // If there exists user with the username and password submitted
+            if(!!user.length){
+                // Go to the next stage of the request. In this case
+                // Move from "processing" to "completed"
+                dispatch(goToNextStage())
+
+                // Also save the details of the user who has logged in
+                dispatch(login({loggedIn: true, userDetails: user[0]}))
+            }
+        }else {
+            console.log("This is fucking awesome")
+        }
     }
 
     // Update the form data when the user changes
@@ -15,6 +46,20 @@ function LoginForm(){
     function handleInputChange(e){
         const inputChanged = e.target.getAttribute('name')
         setFormData(formData => ({...formData, [inputChanged]: e.target.value }))
+    }
+
+    function getButtonText(){
+        const stages = useSelector(state => state.request.stages)
+
+        if(stages['login'] === 0){
+            // Idle stage. User still filling in their credentials
+            return 'Login'
+        }else{
+            // Processing stage. The person clicked the login button.
+            // Now we process the information submitted
+            // The text on the button now changes to the following
+            return "loggin you in..."
+        }
     }
 
     return (
@@ -29,7 +74,7 @@ function LoginForm(){
                     <input type="password" name="password" placeholder="password" value={formData.password} onChange={handleInputChange}/>
                 </div>
 
-                <Button text='login' action={handleFormSubmit} />
+                <Button text={getButtonText()} action={handleFormSubmit} />
             </form>
         </div>
     )
