@@ -15,4 +15,10 @@
 .container {
     display: flex;
     justify-content: space-between;
+    margin: auto;
+    width: 95%;
+}
+
+ul li {
+    list-style: none;
 }
