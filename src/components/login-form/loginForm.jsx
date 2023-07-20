@@ -34,7 +34,7 @@ function LoginForm(){
                 dispatch(goToNextStage('login'))
 
                 // Also save the details of the user who has logged in
-                dispatch(login({loggedIn: true, userDetails: user[0]}))
+                dispatch(login(user[0]))
             }
         }else {
             console.log("This is fucking awesome")

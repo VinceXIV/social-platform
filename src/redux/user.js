@@ -16,9 +16,9 @@ export const counterSlice = createSlice({
   initialState,
 
   reducers: {
-    login: (state, userDetails) => {
+    login: (state, userData) => {
       state.loggedIn = true
-      state.userDetails = userDetails
+      state.userDetails = userData.payload
 
       localStorage.setItem('data', JSON.stringify(state))
     },
@@ -30,8 +30,8 @@ export const counterSlice = createSlice({
       state.userType = 'regular'      
     },
 
-    updateUserDetails: (state, newUserDetails) => {
-      state.userDetails = {...state.userDetails, ...newUserDetails}
+    updateUserDetails: (state, userData) => {
+      state.userDetails = {...state.userDetails, ...userData.payload}
     },
 
     updateUserType: (state, newUserType) => {
