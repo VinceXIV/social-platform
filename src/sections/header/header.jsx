@@ -10,22 +10,6 @@ function Header(){
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    function viewLoggedInUserPosts(){
-
-    }
-
-    function viewLoggedInUserDetails(){
-
-    }
-
-    function handleLogoutClick(){
-        dispatch(logout())
-    }
-
-    function viewFollowing(){
-
-    }
-
     return (
         <div id="section-header">
             <div className="container">
@@ -33,15 +17,15 @@ function Header(){
 
                 <div className="actions">
                     <ul className="menu">
-                        <li onClick={()=>navigate('home')}>Feed</li>
+                        <li onClick={()=>navigate('home/feed')}>Feed</li>
 
                         {
                             loggedIn ?
                                 <>
-                                    <li onClick={viewLoggedInUserPosts}>My Posts</li>
-                                    <li onClick={viewFollowing}>Following</li>
-                                    <li onClick={viewLoggedInUserDetails}>{userDetails.name}</li>
-                                    <li><Button text="Logout" action={handleLogoutClick} /></li>
+                                    <li onClick={()=>navigate('home/my-posts')}>My Posts</li>
+                                    <li onClick={()=>navigate('home/following')}>Following</li>
+                                    <li onClick={()=>navigate('home/profile')}>{userDetails.name}</li>
+                                    <li><Button text="Logout" action={()=>dispatch(logout())} /></li>
                                 </>
                             :
                             <li><Button text="Login" action={()=> navigate('login')}/></li>
