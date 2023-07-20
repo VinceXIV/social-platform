@@ -6,7 +6,7 @@ import Post from "../../components/post/post";
 import "./my-posts.css"
 
 function MyPosts(){
-    const loggedInUserDetails = useSelector(state => state.user.userPosts)
+    const loggedInUserDetails = useSelector(state => state.user.userDetails)
     const [myPosts, setMyPosts] = useState([])
 
     useEffect(()=>{
