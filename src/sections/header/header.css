@@ -1,0 +1,5 @@
+#section-header {
+    width: 100vw;
+    height: var(--navbar-height);
+    background-color: red;
+}
