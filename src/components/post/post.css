@@ -1,4 +1,34 @@
 
-#component-post .title {
+#component-post {
+    border-top: 0.1rem solid #d4d4d4;
+    padding: 0.5rem 0;
+    cursor: pointer;
+}
+
+#component-post:hover {
+    background-color: #d4d4d4;
+}
+
+#component-post .post-title {
     font-size: 1.2rem;
+}
+
+#component-post .comment-title {
+    font-size: 1.1rem;
+}
+
+#component-post .comments {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-left: 0.1rem solid #d4d4d4;
+    margin: 3vw 0;
+}
+
+#component-post .comment {
+    margin-left: 3vw;
+}
+
+#component-post .display-none {
+    display: none;
 }
