@@ -40,6 +40,10 @@
     margin-left: 1rem;
 }
 
+#paywall ul li {
+    list-style-type: disc;
+}
+
 #paywall .payments {
     display: flex;
     justify-content: center;
