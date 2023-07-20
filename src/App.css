@@ -1,0 +1,11 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+    --navbar-height: max(10vh, 5rem);
+}
+
+.page {
+    min-height: calc(100vh - var(--navbar-height));
+}
