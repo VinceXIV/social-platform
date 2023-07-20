@@ -31,7 +31,7 @@ function LoginForm(){
             if(!!user.length){
                 // Go to the next stage of the request. In this case
                 // Move from "processing" to "completed"
-                dispatch(goToNextStage())
+                dispatch(goToNextStage('login'))
 
                 // Also save the details of the user who has logged in
                 dispatch(login({loggedIn: true, userDetails: user[0]}))
@@ -49,9 +49,9 @@ function LoginForm(){
     }
 
     function getButtonText(){
-        const stages = useSelector(state => state.request.stages)
+        const loginStage = useSelector(state => state.request.login)
 
-        if(stages['login'] === 0){
+        if(loginStage === 0){
             // Idle stage. User still filling in their credentials
             return 'Login'
         }else{
