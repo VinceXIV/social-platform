@@ -16,9 +16,7 @@ if(res.ok){
 // default state of the posts to be shown to the user
 const initialState = {
     posts: posts, // These are posts by the users of the social app
-    loggedInUserPosts: [] // posts by the currently logged in user
 }
-
 
 export const counterSlice = createSlice({
   name: 'posts',
@@ -46,10 +44,6 @@ export const counterSlice = createSlice({
                 return post
             }
         })
-    },
-
-    setLoggedInUserPosts: (state, data) => {
-        state.loggedInUserPosts = data.payload
     }
   },
 })

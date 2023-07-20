@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./loginForm.css"
 import Button from "../../elements/button/button";
 import apiHost from "../../utilities/api";
-import { login } from "../../redux/user";
+import { login, updateUserPosts } from "../../redux/user";
 import { goToNextStage } from "../../redux/request";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -35,10 +35,23 @@ function LoginForm(){
 
                 // Also save the details of the user who has logged in
                 dispatch(login(user[0]))
+
+                updateUserPosts(user)
             }
         }else {
-            console.log("This is fucking awesome")
+            res.json().then(error => console.warn(error))
         }
+    }
+
+    function updateUserPosts(user){
+        fetch(`${apiHost}/users/${user[0].id}/posts`)
+        .then(res => {
+            if(res.ok){
+                res.json().then(data => dispatch(updateUserPosts(data)))
+            }else {
+                res.json().then(error => console.warn(error))
+            }
+        })
     }
 
     // Update the form data when the user changes

@@ -1,0 +1,7 @@
+#section-my-posts {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+    padding-bottom: 10vw;
+}
