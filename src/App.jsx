@@ -11,7 +11,7 @@ function App() {
       <Header />
       <Routes>
         <Route exact path="/login" element={<Login />} />
-        <Route exact path="/home" element={<Home />} />
+        <Route exact path="/home/:action" element={<Home />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </>
