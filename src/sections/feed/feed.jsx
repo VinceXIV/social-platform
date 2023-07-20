@@ -1,11 +1,11 @@
-import "./posts.css"
+import "./feed.css"
 import Post from "../../components/post/post";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Paywall from "../../components/paywall/paywall";
 import { showPaywall } from "../../redux/paywall";
 
-function Posts(){
+function Feed(){
     const {loggedIn, userType } = useSelector(state => state.user)
     const posts = useSelector(state => state.posts.posts)
     const paywalled = useSelector(state => state.paywall.paywalled)
@@ -63,4 +63,4 @@ function Posts(){
     )
 }
 
-export default Posts;
+export default Feed;
