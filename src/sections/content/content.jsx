@@ -22,10 +22,13 @@ function Content(){
     function handleScroll(e) {
         const postsSection = document.querySelector('#section-posts')
 
-        // If a person has scrolled to bottom (meaning they have 
-        // viewed all the 20 free posts), show the paywall if they
-        // want to view more posts
-        if(window.scrollY > 0.9 * postsSection.scrollHeight){
+        // If a person has scrolled to bottom (meaning they have viewed all the 20 free posts),
+        //show the paywall if they want to view more posts
+        // The 600 here is comes from me observing that when the scrollbar was at the very 
+        // bottom, window.scrollY was smaller than postsSection.scrollHeight by roughly 530
+        const scrolledToBottom = parseInt(window.scrollY) + 600 >= parseInt(postsSection.scrollHeight)
+
+        if((!loggedIn || userType === 'regular') && scrolledToBottom){
             dispatch(paywall())
         }
     }

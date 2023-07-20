@@ -3,12 +3,16 @@ import apiHost from "../../utilities/api";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
+import { useSelector } from "react-redux";
 
 function Post({post}){
     const [comments, setComments] = useState([]) // By default, don't show the comments
+    const paywalled = useSelector(state => state.paywall.paywalled)
     const postRef = useRef()
 
     useEffect(()=>{
+        // Get the comments for each posts so that when a 
+        // user clicks on particular post, they can see the comments
         fetch(`${apiHost}/posts/${post.id}/comments`)
         .then(res => {
 
@@ -18,7 +22,13 @@ function Post({post}){
                 })
             }
         })
-    }, [setComments])
+
+        // If a user is paywalled, style the posts such that the paywall is
+        // more prominent/pronounced. The styling are in the css file
+        if(paywalled){
+            postRef.current.classList.add('paywalled')
+        }
+    }, [setComments, paywalled])
 
     function handlePostClick(){
         // Get comments related to this post element as rendered on dom

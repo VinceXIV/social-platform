@@ -5,5 +5,63 @@
     top: 0;
     left: 0;
     z-index: 1;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    justify-content: center;
+
+    animation-name: change-opacity;
+    animation-duration: 1s;
+}
+
+#paywall .paywall-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: blue;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+#paywall .paywall-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#paywall ul {
+    margin-left: 1rem;
+}
+
+#paywall .payments {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+#paywall .payment-option {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#paywall .details {
+    text-align: center;
+}
+
+#paywal button {
+    margin-top: 1rem;
+}
+
+@keyframes change-opacity {
+    from {opacity: 0; }
+    to {opacity: 1;}
 }
