@@ -1,26 +1,38 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+
+// We will be saving some data to the local storage to use for initial state
+const localStorageData = JSON.parse(localStorage.getItem('data') || null) || {}
+
 const initialState = {
-  loggedIn: false,
-  userDetails: {},
-  userType: 'regular', // User can be regular or premium
-  activePagePath: '/',
+  loggedIn: localStorageData['loggedIn'] || false,
+  userDetails: localStorageData['userDetails'] || {},
+  userType: localStorageData['userType'] || 'regular', // User can be regular or premium
+  activePagePath: localStorageData['activePagePath'] || '/',
 }
 
 export const counterSlice = createSlice({
   name: 'user',
+
   initialState,
+
   reducers: {
     login: (state, userDetails) => {
       state.loggedIn = true
       state.userDetails = userDetails
-      state.activePagePath = '/home'
+
+      localStorage.setItem('data', JSON.stringify(state))
     },
-    logout: (state, newUserDetails) => {
-      state.loggedIn = false
+
+    logout: (state) => {
+      localStorage.clear()
+      state = initialState
+    },
+
+    updateUserDetails: (state, newUserDetails) => {
       state.userDetails = {...state.userDetails, ...newUserDetails}
-      state.activePagePath = '/login'
     },
+
     updateUserType: (state, newUserType) => {
       state.userType = newUserType
     }
