@@ -9,7 +9,7 @@ const res = await fetch(`${apiHost}/posts`)
 let posts = []
 
 if(res.ok){
-    posts = await res.json().then(data => data.slice(0, 20))
+    posts = await res.json().then(data => data)
 }
 
 // We use the posts we got above to set it as the
@@ -25,19 +25,22 @@ export const counterSlice = createSlice({
   initialState,
 
   reducers: {
-    setPosts: (state, newPostArray) => {
+    setPosts: (state, data) => {
+        const newPostArray = data.payload
         state.posts = newPostArray
     },
 
-    addPost: (state, newPost) => {
-        state.posts = state.posts.push(newPost)
+    addPost: (state, data) => {
+        const newPost = data.payload
+        state.posts = state.posts.push(newPost.paylo)
     },
 
     deletePost: (state, deletedPost) => {
         state.posts = state.posts.filter(post => post.id !== deletedPost.id)
     },
 
-    updatePost: (state, updatedPost) => {
+    updatePost: (state, data) => {
+        const updatedPost = data.payload
         state.posts = state.posts.map(post => {
             if(post.id === updatedPost.id){
                 return {...post, ...updatedPost}

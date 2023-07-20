@@ -7,7 +7,7 @@ const localStorageData = JSON.parse(localStorage.getItem('data') || null) || {}
 const initialState = {
   loggedIn: localStorageData['loggedIn'] || false,
   userDetails: localStorageData['userDetails'] || {},
-  userType: localStorageData['userType'] || 'regular', // User can be regular or premium
+  userType: localStorageData['userType'] || 'premium', // User can be regular or premium
 }
 
 export const counterSlice = createSlice({
