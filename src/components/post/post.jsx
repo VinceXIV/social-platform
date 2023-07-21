@@ -78,7 +78,15 @@ function Post({post}){
     return (
         <div ref={postRef} id="component-post" className="component" onClick={()=>handlePostClick(post.id)}>
             <h2 className="post-title">{post.title}</h2>
-            <p className="body display-none" onClick={toggleShowComments}>{post.body}</p>
+            <div className="body display-none" onClick={toggleShowComments}>
+                <p>{post.body}</p>
+                <ul className="activity">
+                    <li>{post.likes} likes</li>
+                    <li>{post.likes} views</li>
+                    <li>{comments.length} comments</li>
+                </ul>
+            </div>
+
 
             <div id={`post-${post.id}-comments`} className="comments display-none" onClick={toggleShowComments}>
                 {

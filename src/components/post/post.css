@@ -10,7 +10,7 @@
 }
 
 #component-post:hover {
-    background-color: #d4d4d4;
+    background-color: beige;
 }
 
 #component-post .post-title {
@@ -35,4 +35,11 @@
 
 #component-post .display-none {
     display: none;
+}
+
+#component-post .activity {
+    display: flex;
+    gap: 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
