@@ -4,12 +4,13 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { makeViewed } from "../../redux/posts";
+import { makeViewed, makeLiked, makeUnliked } from "../../redux/posts";
 import { showPaywall } from "../../redux/paywall";
 
 function Post({post}){
     const [comments, setComments] = useState([]) // By default, don't show the comments
     const viewedPosts = useSelector(state => state.posts.viewed)
+    const likedPosts = useSelector(state => state.posts.liked)
     const paywalled = useSelector(state => state.paywall.paywalled)
     const { userType } = useSelector(state => state.user.userType)
     const postRef = useRef()
@@ -71,10 +72,23 @@ function Post({post}){
         }
     }
 
-    function toggleShowComments(e){
-        e.stopPropagation()
+    function toggleShowComments(){
         const comments = getDiv('.comments')
         comments.classList.toggle('display-none')      
+    }
+
+    function handleActivityClick(e){
+        e.stopPropagation()
+    }
+
+    function handleLikeClick(e){
+        e.stopPropagation()
+        
+        if(likedPosts.find(lId => lId === post.id)){
+            dispatch(makeUnliked(post.id))
+        }else {
+            dispatch(makeLiked(post.id))
+        }
     }
 
     return (
@@ -85,8 +99,8 @@ function Post({post}){
 
                 <p>{post.body}</p>
 
-                <ul className="activity">
-                    <li className="activity-item">
+                <ul className="activity" onClick={handleActivityClick}>
+                    <li className="activity-item" onClick={handleLikeClick}>
                         <i class="fa-regular fa-heart"></i>
                         {post.likes} likes
                     </li>
@@ -95,7 +109,7 @@ function Post({post}){
                         <i class="fa-regular fa-eye"></i>
                         <p>{post.views} views</p>
                     </li>
-                    
+
                     <li className="activity-item" onClick={toggleShowComments}>
                         <i class="fa-regular fa-comment"></i>
                         <p>{comments.length} comments</p>                        

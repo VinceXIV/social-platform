@@ -25,6 +25,8 @@ if(res.ok){
 const initialState = {
     posts: posts, // These are posts by the users of the social app
     viewed: [], // Will contain a list of posts for which the user has viewed
+    liked: [],
+    unliked: []
 }
 
 export const counterSlice = createSlice({
@@ -56,15 +58,73 @@ export const counterSlice = createSlice({
     },
 
     makeViewed: (state, postId) => {
+        if(!state.viewed.find(pId => pId === postId.payload)){
+            // Update the number of views of that post
+            state.posts = state.posts.map(post => {
+                if(post.id === postId.payload){
+                    const p = post
+                    p.views += 1
+                    return p
+                }else {
+                    return post
+                }
+            })
+        }
+
         const viewedPosts = state.viewed
         viewedPosts.push(postId.payload)
 
         state.viewed = Array.from(new Set(viewedPosts))
+    },
+
+    makeLiked: (state, postId) => {
+        if(!state.liked.find(pId => pId === postId.payload)){
+            // Update the number of views of that post
+            state.posts = state.posts.map(post => {
+                if(post.id === postId.payload){
+                    const p = post
+                    p.likes += 1
+
+                    state.liked.push(postId.payload)
+                    state.unliked = state.unliked.filter(lId => lId !== postId.payload)
+                    return p
+                }else {
+                    return post
+                }
+            })            
+        }
+
+        const likedPosts = state.liked
+        likedPosts.push(postId.payload)
+
+        state.liked = Array.from(new Set(likedPosts))
+    },
+
+    makeUnliked: (state, postId) => {
+        if(!state.unliked.find(pId => pId === postId.payload)){
+            state.posts = state.posts.map(post => {
+                if(post.id === postId.payload){
+                    const p = post
+                    p.likes -= 1
+
+                    state.unliked.push(postId.payload)
+                    state.liked = state.liked.filter(lId => lId !== postId.payload)
+                    return p
+                }else {
+                    return post
+                }
+            })           
+        }
+
+        const unlikedPosts = state.unliked
+        unlikedPosts.push(postId.payload)
+
+        state.unliked = Array.from(new Set(unlikedPosts))
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const {setPosts, addPost, deletePost, updatePost, setLoggedInUserPosts, makeViewed } = counterSlice.actions
+export const {setPosts, addPost, deletePost, updatePost, setLoggedInUserPosts, makeViewed, makeLiked, makeUnliked } = counterSlice.actions
 
 export default counterSlice.reducer
