@@ -48,8 +48,10 @@ export const counterSlice = createSlice({
     },
 
     makeViewed: (state, postId) => {
-        state.viewed.push(postId.payload)
-        state.viewed = Array.from(new Set(state.viewed))
+        const viewedPosts = state.viewed
+        viewedPosts.push(postId.payload)
+
+        state.viewed = Array.from(new Set(viewedPosts))
     }
   },
 })

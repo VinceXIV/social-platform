@@ -5,13 +5,15 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { makeViewed } from "../../redux/posts";
+import { showPaywall } from "../../redux/paywall";
 
 function Post({post}){
     const [comments, setComments] = useState([]) // By default, don't show the comments
+    const viewedPosts = useSelector(state => state.posts.viewed)
     const paywalled = useSelector(state => state.paywall.paywalled)
+    const { userType } = useSelector(state => state.user.userType)
     const postRef = useRef()
     const dispatch = useDispatch()
-    const viewedPosts = useSelector(state => state.posts.viewed)
 
     useEffect(()=>{
         // Get the comments for each posts so that when a 
@@ -35,22 +37,41 @@ function Post({post}){
         }
     }, [setComments, paywalled])
 
+    function getDiv(cssSelector){
+        return postRef.current.querySelector(cssSelector)
+    }
+
     function handlePostClick(postId){
+        const comments = getDiv('.comments')
+        const postBody = getDiv('.body')
 
-        dispatch(makeViewed(postId)) // Register this post as viewed
-
-        const comments = postRef.current.querySelector('.comments')
-        if(Array.from(comments.classList).find(c => c === 'display-none')){
-            const postBody = postRef.current.querySelector('.body')
+        // If a user has already viewed 20 posts
+        if(viewedPosts.length >= 2){
+            // If they are a premium user, or this post is simply them 
+            // reopening one of the posts they have already viewed
+            if(userType === 'premium' || viewedPosts.find(p => p === postId)){
+                
+                // We don't want to display-none a post body when the comments 
+                // are being displayed. At the least, comments should only be 
+                // shown when the post is being shown too
+                if(Array.from(comments.classList).find(c => c === 'display-none')){
+                    postBody.classList.toggle('display-none')
+                }else {
+                    postBody.classList.toggle('display-none')
+                    comments.classList.toggle('display-none')
+                }
+            }else { // Else they should pay
+                dispatch(showPaywall())
+            }
+        }else {
             postBody.classList.toggle('display-none')
+            dispatch(makeViewed(postId)) // Register this post as viewed
         }
-
-        console.log(viewedPosts)
     }
 
     function toggleShowComments(e){
         e.stopPropagation()
-        const comments = postRef.current.querySelector('.comments')
+        const comments = getDiv('.comments')
         comments.classList.toggle('display-none')      
     }
 
