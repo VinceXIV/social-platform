@@ -59,6 +59,7 @@ export const counterSlice = createSlice({
 
     block: (state, userId) => {
       state.blocked.push(userId.payload)
+      state.following = state.following.filter(f => f !== userId.payload)
       localStorage.setItem('data', JSON.stringify(state))
     },
 
