@@ -14,11 +14,12 @@ function Paywall(){
             <div className="paywall-content">
                 <h1>Join Premium</h1>
                 <div className="paywall-details">
-                    <p>You have reached today's maximum viewable posts</p>
-                    <p>Join premium to view more</p>
-                    <p>With premium subscription, you will also be able to</p>
+                    <p>Unlock more features with premium subscription</p>
+                    <p>You will be able to</p>
                     <ul>
-                        <li>Block a post from particular users</li>
+                        <li>View all posts</li>
+                        <li>Like and add comments on posts</li>
+                        <li>Block posts from particular users</li>
                         <li>Block all posts from particular users</li>
                         <li>And many more..</li>
                     </ul>
