@@ -3,9 +3,7 @@ import { useLocation } from "react-router-dom";
 import ProfileInfo from "../../components/profile-info/profile-info";
 import apiHost from "../../utilities/api";
 import { useGet } from "../../utilities/hooks";
-import { useState } from "react";
 import "./profile.css"
-import { useEffect } from "react";
 
 function Profile(){
     const location = useLocation()
