@@ -46,7 +46,7 @@ function Posts({posts = [], limit=20}){
     }
 
     return (
-        <div id="section-posts" className="section content">
+        <div id="section-posts" className="section">
             {
                 // Show the paywall if the user is paywalled
                 // User is paywalled after viewing all 20 free posts
