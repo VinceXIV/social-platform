@@ -8,8 +8,8 @@ const initialState = {
   loggedIn: localStorageData['loggedIn'] || false,
   userDetails: localStorageData['userDetails'] || {},
   userType: localStorageData['userType'] || 'regular', // User can be regular or premium
-  following: localStorageData['following'] || [3, 4, 5], // Will hold the an array of ids that the user is following
-  blocked: localStorageData['blocked'] || [7]
+  following: localStorageData['following'] || [], // Will hold the an array of ids that the user is following
+  blocked: localStorageData['blocked'] || []
 }
 
 export const counterSlice = createSlice({
