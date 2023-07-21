@@ -1,0 +1,4 @@
+.app-users .user-details {
+    display: flex;
+    justify-content: space-between;
+}

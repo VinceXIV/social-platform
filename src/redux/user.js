@@ -8,7 +8,8 @@ const initialState = {
   loggedIn: localStorageData['loggedIn'] || false,
   userDetails: localStorageData['userDetails'] || {},
   userType: localStorageData['userType'] || 'regular', // User can be regular or premium
-  following: localStorageData['following'] || [3, 4, 5] // Will hold the an array of ids that the user is following
+  following: localStorageData['following'] || [3, 4, 5], // Will hold the an array of ids that the user is following
+  blocked: localStorageData['blocked'] || [7]
 }
 
 export const counterSlice = createSlice({
@@ -46,19 +47,29 @@ export const counterSlice = createSlice({
       localStorage.setItem('data', JSON.stringify(state))
     },
 
-    addFollowing: (state, newFollower) => {
-      state.following = [...state.following, newFollower.payload]
+    follow: (state, userId) => {
+      state.following.push(userId.payload)
       localStorage.setItem('data', JSON.stringify(state))
     },
 
-    removeFollowing: (state, removedFollowing) => {
-      state.following = state.following.filter(f => f !== removedFollowing)
+    unfollow: (state, userId) => {
+      state.following = state.following.filter(f => f !== userId.payload)
       localStorage.setItem('data', JSON.stringify(state))
+    },
+
+    block: (state, userId) => {
+      state.blocked.push(userId.payload)
+      localStorage.setItem('data', JSON.stringify(state))
+    },
+
+    unblock: (state, userId) => {
+      state.following = state.blocked.filter(f => f !== userId.payload)
+      localStorage.setItem('data', JSON.stringify(state))     
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { login, logout, updateUserType,setFollowing, addFollowing, removeFollowing } = counterSlice.actions
+export const { login, logout, updateUserType,setFollowing, follow, unfollow } = counterSlice.actions
 
 export default counterSlice.reducer

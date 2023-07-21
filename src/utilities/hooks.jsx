@@ -12,8 +12,6 @@ function useGet(url, filterIds=[], key='userId', inverse=false){
                     if(!filterIds.length){
                         setState(data)
                     }else if(filterIds.length && !inverse){
-                        console.log(data)
-
                         // Get the data for which the userId is in the filterIds array
                         setState(data.filter(d => {
                             return filterIds.find(id => id === d[key])
