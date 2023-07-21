@@ -1,22 +1,36 @@
 import {useState, useEffect} from 'react'
 
-function useGet(url, defaultValue = []){
-    const [state, setState] = useState(defaultValue)
+function useGet(url, filterIds=[], key='userId', inverse=false){
+    const [state, setState] = useState([])
 
     useEffect(()=>{
         fetch(url)
-        .then(result => {
-            if(result.ok){
-                result.json().then(data => {
-                    setState(data)
+        .then(res => {
+            if(res.ok){
+
+                res.json().then(data => {
+                    if(!filterIds.length){
+                        setState(data)
+                    }else if(filterIds.length && !inverse){
+                        console.log(data)
+
+                        // Get the data for which the userId is in the filterIds array
+                        setState(data.filter(d => {
+                            return filterIds.find(id => id === d[key])
+                        }))
+                    }else if(filterIds.length && inverse){
+                        // Get the data for which the userId is not in the filterIds array
+                        setState(data.filter(d => {
+                            return filterIds.find(id => id !== d[userId])
+                        }))                    
+                    }
                 })
             }else{
-                result.json().then(error => {
-                    console.warn(error)
-                })
+                res.json().then(error => console.warn(error))
             }
         })
-    }, [url])
+
+    }, [url, setState])
 
     return [state, setState]
 }
