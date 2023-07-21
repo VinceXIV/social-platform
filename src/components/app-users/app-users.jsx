@@ -5,11 +5,13 @@ import "./app-users.css"
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../elements/button/button";
 import { follow, unfollow, block, unblock } from "../../redux/user";
+import { useNavigate } from "react-router-dom";
 
 function FollowingUsers(){
     const [allUsers] = useGet(`${apiHost}/users`)
     const {following, blocked, userType} = useSelector(state => state.user)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     // Is the logged in user following the user whose id
     // has been sent to this method?
@@ -35,6 +37,10 @@ function FollowingUsers(){
         }
     }
 
+    function handleUserClick(userId){
+        navigate(`/users/${userId}/profile`)
+    }
+
     console.log("all users: ", allUsers)
 
     return (
@@ -45,7 +51,7 @@ function FollowingUsers(){
                         <div key={`app-user-${user.id}`}
                             className={`user-details ${isBlocked(user.id)? 'blocked': ''}`}>
 
-                            <p >{user.name}</p>
+                            <p onClick={()=>handleUserClick(user.id)} >{user.name}</p>
 
                             <div>
                                 {

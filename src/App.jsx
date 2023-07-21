@@ -12,7 +12,8 @@ function App() {
       <Routes>
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/home/:action" element={<Home />} />
-        <Route exact path="/profile/:id" element={<Profile />} />
+        <Route exact path="/profile" element={<Profile />} />
+        <Route exact path="/users/:id/profile" element={<Profile />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </>

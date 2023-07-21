@@ -43,7 +43,7 @@ function Header(){
                                         Following
                                     </li>
                                     <li className={`action ${getActiveState(`/profile/${userDetails.id}`)}`}
-                                        onClick={()=>navigate(`profile/${userDetails.id}`)}>
+                                        onClick={()=>navigate('profile')}>
                                         {userDetails.name}
                                     </li>
                                     <li><Button text="Logout" action={()=>dispatch(logout())} /></li>
