@@ -101,7 +101,12 @@ function Post({post}){
 
                 <ul className="activity" onClick={handleActivityClick}>
                     <li className="activity-item" onClick={handleLikeClick}>
-                        <i class="fa-regular fa-heart"></i>
+                        {
+                            likedPosts.find(lId => lId === post.id)? 
+                                <i class="fa-solid fa-heart"></i>
+                            :
+                            <i class="fa-regular fa-heart"></i>
+                        }
                         {post.likes} likes
                     </li>
 
