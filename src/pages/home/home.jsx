@@ -7,7 +7,6 @@ import Users from "../../sections/users/users";
 import Profile from "../../sections/profile/profile";
 
 function Home(){
-    const content = null
     const location = useLocation()
 
     function getSection(){
