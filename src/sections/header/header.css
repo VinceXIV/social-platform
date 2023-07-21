@@ -2,8 +2,10 @@
     width: 100vw;
     height: var(--navbar-height);
     background-color: red;
+    z-index: 1;
     display: flex;
     align-items: center;
+    position: fixed;
 }
 
 #section-header .container {
