@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import apiHost from "../../utilities/api";
 import Post from "../../components/post/post";
@@ -8,7 +6,7 @@ import { useGet } from "../../utilities/hooks";
 
 function MyPosts(){
     const loggedInUserDetails = useSelector(state => state.user.userDetails)
-    const [myPosts, setMyPosts] = useGet(`${apiHost}/users/${loggedInUserDetails.id}/posts`)
+    const [myPosts] = useGet(`${apiHost}/users/${loggedInUserDetails.id}/posts`)
 
     return (
         <div id="section-my-posts" className="section">
