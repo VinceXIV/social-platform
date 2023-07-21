@@ -16,6 +16,7 @@ if(res.ok){
 // default state of the posts to be shown to the user
 const initialState = {
     posts: posts, // These are posts by the users of the social app
+    viewed: [], // Will contain a list of posts for which the user has viewed
 }
 
 export const counterSlice = createSlice({
@@ -44,11 +45,15 @@ export const counterSlice = createSlice({
                 return post
             }
         })
+    },
+
+    viewed: (state, postId) => {
+        state.viewed.push(postId.payload) 
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const {setPosts, addPost, deletePost, updatePost, setLoggedInUserPosts } = counterSlice.actions
+export const {setPosts, addPost, deletePost, updatePost, setLoggedInUserPosts, viewed } = counterSlice.actions
 
 export default counterSlice.reducer
