@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 
-function useGet(url, filterIds=[], key='userId', inverse=false){
+function useGet(url, filterIds=null, key='userId', inverse=false){
     const [state, setState] = useState([])
 
     useEffect(()=>{
@@ -9,17 +9,17 @@ function useGet(url, filterIds=[], key='userId', inverse=false){
             if(res.ok){
 
                 res.json().then(data => {
-                    if(!filterIds.length){
+                    if(!filterIds){
                         setState(data)
-                    }else if(filterIds.length && !inverse){
+                    }else if(!inverse){
                         // Get the data for which the userId is in the filterIds array
                         setState(data.filter(d => {
                             return filterIds.find(id => id === d[key])
                         }))
-                    }else if(filterIds.length && inverse){
+                    }else if(inverse){
                         // Get the data for which the userId is not in the filterIds array
                         setState(data.filter(d => {
-                            return filterIds.find(id => id !== d[userId])
+                            return filterIds.find(id => id !== d[key])
                         }))                    
                     }
                 })
