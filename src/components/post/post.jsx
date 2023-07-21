@@ -82,7 +82,7 @@ function Post({post}){
                 <p>{post.body}</p>
                 <ul className="activity">
                     <li>{post.likes} likes</li>
-                    <li>{post.likes} views</li>
+                    <li>{post.views} views</li>
                     <li>{comments.length} comments</li>
                 </ul>
             </div>

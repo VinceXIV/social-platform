@@ -9,7 +9,15 @@ const res = await fetch(`${apiHost}/posts`)
 let posts = []
 
 if(res.ok){
-    posts = await res.json().then(data => data)
+    const results = await res.json().then(data => data)
+
+    posts = results.map(p => {
+        return {
+            ...p,
+            likes: Math.floor(Math.random()*50),
+            views: Math.floor(Math.random()*5000)
+        }
+    })
 }
 
 // We use the posts we got above to set it as the
