@@ -56,15 +56,17 @@ function Post({post}){
                 // shown when the post is being shown too
                 if(Array.from(comments.classList).find(c => c === 'display-none')){
                     postBody.classList.toggle('display-none')
-                }else {
-                    postBody.classList.toggle('display-none')
-                    comments.classList.toggle('display-none')
                 }
             }else { // Else they should pay
                 dispatch(showPaywall(["You have reached today's limit of 20 posts.", "Join premium to view more"]))
             }
         }else {
-            postBody.classList.toggle('display-none')
+            // We don't want to display-none a post body when the comments 
+            // are being displayed. At the least, comments should only be 
+            // shown when the post is being shown too
+            if(Array.from(comments.classList).find(c => c === 'display-none')){
+                postBody.classList.toggle('display-none')
+            }
             dispatch(makeViewed(postId)) // Register this post as viewed
         }
     }
@@ -78,12 +80,20 @@ function Post({post}){
     return (
         <div ref={postRef} id="component-post" className="component" onClick={()=>handlePostClick(post.id)}>
             <h2 className="post-title">{post.title}</h2>
-            <div className="body display-none" onClick={toggleShowComments}>
+            <div className="body display-none">
                 <p>{post.body}</p>
                 <ul className="activity">
-                    <li>{post.likes} likes</li>
-                    <li>{post.views} views</li>
-                    <li>{comments.length} comments</li>
+                    <li className="activity-item">
+                    <i class="fa-regular fa-heart"></i>
+                        {post.likes} likes</li>
+                    <li className="activity-item">
+                        <i class="fa-regular fa-eye"></i>
+                        <p>{post.views} views</p>
+                    </li>
+                    <li className="activity-item" onClick={toggleShowComments}>
+                        <i class="fa-regular fa-comment"></i>
+                        <p>{comments.length} comments</p>                        
+                    </li>
                 </ul>
             </div>
 
