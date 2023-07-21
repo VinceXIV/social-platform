@@ -47,13 +47,14 @@ export const counterSlice = createSlice({
         })
     },
 
-    viewed: (state, postId) => {
-        state.viewed.push(postId.payload) 
+    makeViewed: (state, postId) => {
+        state.viewed.push(postId.payload)
+        state.viewed = Array.from(new Set(state.viewed))
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const {setPosts, addPost, deletePost, updatePost, setLoggedInUserPosts, viewed } = counterSlice.actions
+export const {setPosts, addPost, deletePost, updatePost, setLoggedInUserPosts, makeViewed } = counterSlice.actions
 
 export default counterSlice.reducer

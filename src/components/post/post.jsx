@@ -3,12 +3,15 @@ import apiHost from "../../utilities/api";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { makeViewed } from "../../redux/posts";
 
 function Post({post}){
     const [comments, setComments] = useState([]) // By default, don't show the comments
     const paywalled = useSelector(state => state.paywall.paywalled)
     const postRef = useRef()
+    const dispatch = useDispatch()
+    const viewedPosts = useSelector(state => state.posts.viewed)
 
     useEffect(()=>{
         // Get the comments for each posts so that when a 
@@ -32,12 +35,17 @@ function Post({post}){
         }
     }, [setComments, paywalled])
 
-    function toggleShowPost(){
+    function handlePostClick(postId){
+
+        dispatch(makeViewed(postId)) // Register this post as viewed
+
         const comments = postRef.current.querySelector('.comments')
         if(Array.from(comments.classList).find(c => c === 'display-none')){
             const postBody = postRef.current.querySelector('.body')
             postBody.classList.toggle('display-none')
         }
+
+        console.log(viewedPosts)
     }
 
     function toggleShowComments(e){
@@ -47,7 +55,7 @@ function Post({post}){
     }
 
     return (
-        <div ref={postRef} id="component-post" className="component" onClick={toggleShowPost}>
+        <div ref={postRef} id="component-post" className="component" onClick={()=>handlePostClick(post.id)}>
             <h2 className="post-title">{post.title}</h2>
             <p className="body display-none" onClick={toggleShowComments}>{post.body}</p>
 
