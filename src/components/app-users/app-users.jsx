@@ -32,7 +32,7 @@ function FollowingUsers(){
 
     function handleBlockClick(){
         if(userType === 'regular'){
-            dispatch(showPaywall())
+            dispatch(showPaywall(['Unlock more features with premium subscription']))
         }else {
             dispatch(block(user.id))
         }

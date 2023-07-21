@@ -1,9 +1,10 @@
 import Button from "../../elements/button/button";
 import "./paywall.css"
 import { unshowPaywall } from "../../redux/paywall";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function Paywall(){
+    const paywallMessages = useSelector(state => state.paywall.messages)
     const dispatch = useDispatch()
     function handlePaymentClick(){
 
@@ -14,7 +15,11 @@ function Paywall(){
             <div className="paywall-content">
                 <h1>Join Premium</h1>
                 <div className="paywall-details">
-                    <p>Unlock more features with premium subscription</p>
+                    {
+                        paywallMessages.map((m, i) => {
+                            return <p key={`paywall-message-${i}`}>{m}</p>
+                        })
+                    }
                     <p>You will be able to</p>
                     <ul>
                         <li>View all posts</li>

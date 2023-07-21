@@ -61,7 +61,7 @@ function Post({post}){
                     comments.classList.toggle('display-none')
                 }
             }else { // Else they should pay
-                dispatch(showPaywall())
+                dispatch(showPaywall(["You have reached today's limit of 20 posts.", "Join premium to view more"]))
             }
         }else {
             postBody.classList.toggle('display-none')

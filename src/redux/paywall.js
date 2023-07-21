@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    paywalled: false
+    paywalled: false,
+    messages: []
 }
 
 export const counterSlice = createSlice({
@@ -10,8 +11,9 @@ export const counterSlice = createSlice({
   initialState,
 
   reducers: {
-    showPaywall: (state) => {
+    showPaywall: (state, message) => {
         state.paywalled = true
+        state.messages = message?.payload || state.messages
     },
 
     unshowPaywall: (state) => {
