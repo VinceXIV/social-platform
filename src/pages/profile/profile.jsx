@@ -1,9 +1,13 @@
-import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import ProfileInfo from "../../components/profile-info/profile-info";
+import apiHost from "../../utilities/api";
+import { useGet } from "../../utilities/hooks";
 import "./profile.css"
 
 function Profile(){
-    const userDetails = useSelector(state => state.user.userDetails)
+    const location = useLocation()
+    const [,,userId] = location.pathname.split("/")
+    const [userDetails] = useGet(`${apiHost}/users/${userId}`)    
 
     // userDetails is an object, which is also nested in certain instances.
     // In this function, I convert the nested object into a nested array
@@ -33,10 +37,13 @@ function Profile(){
         return result;
     }
 
-
     return (
-        <div id="section-profile" className="content">
-            <div className="user-info">{ arrayFyDetails(userDetails) }</div>
+        <div id="page-profile" className="page">
+            <div className="container">
+                <div id="section-profile" className="content">
+                    <div className="user-info">{ arrayFyDetails(userDetails) }</div>
+                </div>
+            </div>
         </div>
     )
 }

@@ -42,8 +42,8 @@ function Header(){
                                         onClick={()=>navigate('home/following')}>
                                         Following
                                     </li>
-                                    <li className={`action ${getActiveState('/home/profile')}`}
-                                        onClick={()=>navigate('home/profile')}>
+                                    <li className={`action ${getActiveState(`/profile/${userDetails.id}`)}`}
+                                        onClick={()=>navigate(`profile/${userDetails.id}`)}>
                                         {userDetails.name}
                                     </li>
                                     <li><Button text="Logout" action={()=>dispatch(logout())} /></li>

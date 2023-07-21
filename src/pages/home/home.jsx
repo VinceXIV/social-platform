@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 import MyPosts from "../../sections/my-posts/my-posts";
 import Following from "../../sections/following/following";
 import Users from "../../sections/users/users";
-import Profile from "../../sections/profile/profile";
 import Sidebar from "../../sections/sidebar/sidebar";
 
 function Home(){
@@ -19,8 +18,6 @@ function Home(){
             return <Users />
         }else if(location.pathname === '/home/following'){
             return <Following />
-        }else if(location.pathname === '/home/profile'){
-            return <Profile />
         }else {
             return <Feed />
         }
