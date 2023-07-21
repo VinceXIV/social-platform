@@ -47,7 +47,7 @@ function Feed(){
     }
 
     return (
-        <div id="section-posts" className="section">
+        <div id="section-posts" className="section content">
             {
                 // Show the paywall if the user is paywalled
                 // User is paywalled after viewing all 20 free posts

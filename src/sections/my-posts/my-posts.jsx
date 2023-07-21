@@ -9,7 +9,7 @@ function MyPosts(){
     const [myPosts] = useGet(`${apiHost}/users/${loggedInUserDetails.id}/posts`)
 
     return (
-        <div id="section-my-posts" className="section">
+        <div id="section-my-posts" className="section content">
             {
                 myPosts.map(post => {
                     return <Post post={post} key={`post-${post.id}`}/>                 

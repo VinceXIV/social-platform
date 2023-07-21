@@ -9,7 +9,7 @@ function Following(){
     const [followingPosts] = useGet(`${apiHost}/posts`, following)
     
     return (
-        <div>
+        <div className="content">
             {
                 followingPosts.map(post => {
                     return <Post post={post} key={`following-post-${post.id}`}/>
