@@ -46,7 +46,7 @@ function Post({post}){
         const postBody = getDiv('.body')
 
         // If a user has already viewed 20 posts
-        if(viewedPosts.length >= 2){
+        if(viewedPosts.length >= 20){
             // If they are a premium user, or this post is simply them 
             // reopening one of the posts they have already viewed
             if(userType === 'premium' || viewedPosts.find(p => p === postId)){
