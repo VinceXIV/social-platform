@@ -80,16 +80,22 @@ function Post({post}){
     return (
         <div ref={postRef} id="component-post" className="component" onClick={()=>handlePostClick(post.id)}>
             <h2 className="post-title">{post.title}</h2>
+
             <div className="body display-none">
+
                 <p>{post.body}</p>
+
                 <ul className="activity">
                     <li className="activity-item">
-                    <i class="fa-regular fa-heart"></i>
-                        {post.likes} likes</li>
+                        <i class="fa-regular fa-heart"></i>
+                        {post.likes} likes
+                    </li>
+
                     <li className="activity-item">
                         <i class="fa-regular fa-eye"></i>
                         <p>{post.views} views</p>
                     </li>
+                    
                     <li className="activity-item" onClick={toggleShowComments}>
                         <i class="fa-regular fa-comment"></i>
                         <p>{comments.length} comments</p>                        

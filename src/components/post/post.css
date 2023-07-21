@@ -1,6 +1,5 @@
 
 #component-post {
-    /* border-top: 0.1rem solid #d4d4d4; */
     padding: 0.5rem 0;
     cursor: pointer;
     padding: 1rem;
@@ -8,10 +7,6 @@
 
 #component-post.paywalled {
     opacity: 0.3;
-}
-
-#component-post:hover {
-    background-color: beige;
 }
 
 #component-post .post-title {
@@ -26,7 +21,6 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    /* border-left: 0.1rem solid #d4d4d4; */
     margin: 3vw 0;
 }
 
@@ -48,4 +42,10 @@
 #component-post .activity-item {
     display: flex;
     gap: 0.3rem;
+    padding: 0.5rem;
+    border-radius: 0.7rem;
+}
+
+#component-post .activity-item:hover {
+    background-color: beige;
 }
