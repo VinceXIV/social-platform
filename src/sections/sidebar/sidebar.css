@@ -6,4 +6,7 @@
 
     position: sticky;
     top: calc(var(--navbar-height) + 1rem);
+
+    background-color: beige;
+    border-radius: 0.5rem;
 }

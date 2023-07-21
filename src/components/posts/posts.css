@@ -1,0 +1,18 @@
+#section-posts form {
+    width: 100%;
+    background-color: beige;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    padding: 1rem;
+    height: var(--navbar-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#section-posts form input {
+    width: 70%;
+    outline: none;
+    border: none;
+    padding: 0.5rem;
+}
