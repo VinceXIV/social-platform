@@ -1,0 +1,9 @@
+.title {
+    width: 10rem;
+    min-width: max-content;
+    font-weight: bold;
+}
+
+.info {
+    display: flex;
+}
