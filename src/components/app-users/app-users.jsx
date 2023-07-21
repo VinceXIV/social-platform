@@ -8,7 +8,8 @@ import { follow, unfollow, block, unblock } from "../../redux/user";
 import { useNavigate } from "react-router-dom";
 
 function FollowingUsers(){
-    const [allUsers] = useGet(`${apiHost}/users`)
+    const userDetails = useSelector(state => state.user.userDetails)
+    const [allUsers] = useGet(`${apiHost}/users`) // Get all users except the the logged in user
     const {following, blocked, userType} = useSelector(state => state.user)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -41,12 +42,14 @@ function FollowingUsers(){
         navigate(`/users/${userId}/profile`)
     }
 
-    console.log("all users: ", allUsers)
+    function removeLoggedInUser(allUsers){
+        return allUsers.filter(user => user.id !== userDetails.id)
+    }
 
     return (
         <div className="app-users">
             {
-                allUsers.map(user => {
+                removeLoggedInUser(allUsers).map(user => {
                     return (
                         <div key={`app-user-${user.id}`}
                             className={`user-details ${isBlocked(user.id)? 'blocked': ''}`}>
