@@ -1,13 +1,30 @@
 import "./posts.css"
 import Post from "../post/post"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Paywall from "../../components/paywall/paywall";
 import { useState } from "react";
 import Button from "../../elements/button/button";
+import { cosine } from "string-comparison";
+import { setPosts } from "../../redux/posts";
+import { useEffect } from "react";
 
 function Posts({posts = []}){
     const paywalled = useSelector(state => state.paywall.paywalled)
+    const dispatch = useDispatch()
     const [searchInput, setSearchInput] = useState('')
+
+    useEffect(()=>{
+        // Sort posts based on how similar they are with the search term
+        // Here, I am using the cosine similarity for string comparison
+        // Also, I am only searching for similarity in the post title
+        const modifiedPosts = [...posts]
+        const sortedPosts = modifiedPosts.sort((a, b)=> {
+            console.log(a.body)
+            return cosine.similarity(a.title, searchInput) < cosine.similarity(b.title, searchInput)
+        })
+
+        dispatch(setPosts(sortedPosts))
+    }, [searchInput])
 
     function handleSearchInputChange(e){
         setSearchInput(e.target.value)
@@ -28,7 +45,11 @@ function Posts({posts = []}){
 
             <form onSubmit={searchPost}>
                 <label htmlFor="search">Search Post</label>
-                <input name='search' value={searchInput} onChange={handleSearchInputChange} />
+                    <input name='search' 
+                        value={searchInput}
+                        onChange={handleSearchInputChange}
+                        placeholder="Search terms are compared with the post titles"
+                    />
                 <Button text="submit" action={searchPost} />
             </form>
 
