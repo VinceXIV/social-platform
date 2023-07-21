@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import Paywall from "../../components/paywall/paywall";
 import { showPaywall } from "../../redux/paywall";
 
-function Posts({posts = [], limit=20}){
+function Posts({posts = []}){
     const {loggedIn, userType } = useSelector(state => state.user)
     const paywalled = useSelector(state => state.paywall.paywalled)
     const dispatch = useDispatch()
@@ -32,19 +32,6 @@ function Posts({posts = [], limit=20}){
         }
     }
 
-    function getShowablePosts(){
-        if(!loggedIn){
-            // Show only 20 pots if user is not logged
-            return posts.slice(0, limit)
-        }else if (loggedIn && userType === 'regular'){
-            // Also, only show 20 posts if they have logged
-            // in but they are not premium users.
-            return posts.slice(0, limit)
-        }else if (loggedIn && userType === 'premium'){
-            return posts
-        }
-    }
-
     return (
         <div id="section-posts" className="section">
             {
@@ -54,7 +41,7 @@ function Posts({posts = [], limit=20}){
             }
 
             {
-                getShowablePosts().map(post => {
+                posts.map(post => {
                     return <Post post={post} key={`post-${post.id}`}/>
                 })
             }
