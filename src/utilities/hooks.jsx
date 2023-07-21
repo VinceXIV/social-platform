@@ -28,7 +28,7 @@ function useGet(url, filterIds=null, key='userId', inverse=false){
             }
         })
 
-    }, [url, setState])
+    }, [url, setState, filterIds])
 
     return [state, setState]
 }
