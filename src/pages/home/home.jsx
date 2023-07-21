@@ -5,9 +5,11 @@ import MyPosts from "../../sections/my-posts/my-posts";
 import Following from "../../sections/following/following";
 import Users from "../../sections/users/users";
 import Sidebar from "../../sections/sidebar/sidebar";
+import { useSelector } from "react-redux";
 
 function Home(){
     const location = useLocation()
+    const loggedIn = useSelector(state => state.user.loggedIn)
 
     function getSection(){
         if(location.pathname === '/home/feed'){
@@ -27,7 +29,7 @@ function Home(){
         <div id="page-home" className="page">
             <div className="container">
                 { getSection() }
-                <Sidebar />
+                {loggedIn? <Sidebar /> : ""}
             </div>
         </div>
     )
