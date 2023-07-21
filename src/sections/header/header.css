@@ -1,15 +1,21 @@
 #section-header {
     width: 100vw;
     height: var(--navbar-height);
-    background-color: beige;
+    background-color: aquamarine;
     z-index: 1;
     display: flex;
     align-items: center;
     position: fixed;
 }
 
-#section-header .active {
-    border-bottom: solid 0.1rem white;
+#section-header .action {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+#section-header .action.active {
+    border-bottom: solid 0.1rem beige;
 }
 
 #section-header .container {

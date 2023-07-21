@@ -1,8 +1,10 @@
 #section-posts form {
     width: 100%;
-    background-color: beige;
     border-top-left-radius: 1rem;
+
     border-top-right-radius: 1rem;
+    border-radius: 1rem;
+    background-color: aquamarine;
     padding: 1rem;
     height: var(--navbar-height);
     display: flex;
@@ -15,4 +17,8 @@
     outline: none;
     border: none;
     padding: 0.5rem;
+}
+
+#section-posts form {
+    font-weight: bold;
 }

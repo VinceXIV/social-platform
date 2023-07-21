@@ -42,3 +42,13 @@ ul li {
     gap: 1vw;
     padding-bottom: 10vw;
 }
+
+@media  screen and(max-width: 50rem) {
+    .sidebar {
+        display: none;
+    }
+
+    .content {
+        width: 90vw;
+    }
+}
