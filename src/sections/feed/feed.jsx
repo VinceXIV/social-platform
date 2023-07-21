@@ -5,9 +5,11 @@ import apiHost from "../../utilities/api";
 import Posts from "../../components/posts/posts";
 
 function Feed(){   
+    const posts = useSelector(state => state.posts.posts)
+    
     return (
         <div className="content">
-            <Posts />
+            <Posts posts={posts}/>
         </div>
     )
 }

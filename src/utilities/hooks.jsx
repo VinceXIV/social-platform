@@ -14,12 +14,16 @@ function useGet(url, filterIds=null, key='userId', inverse=false){
                     }else if(!inverse){
                         // Get the data for which the userId is in the filterIds array
                         setState(data.filter(d => {
-                            return filterIds.find(id => id === d[key])
+                            return !!filterIds.find(id => id === d[key])
+                        }))
+
+                        console.log("what: ", data.filter(d => {
+                            return !!filterIds.find(id => id === d[key])
                         }))
                     }else if(inverse){
                         // Get the data for which the userId is not in the filterIds array
                         setState(data.filter(d => {
-                            return filterIds.find(id => id !== d[key])
+                            return !!filterIds.find(id => id !== d[key])
                         }))                    
                     }
                 })

@@ -5,9 +5,8 @@ import { useEffect } from "react";
 import Paywall from "../../components/paywall/paywall";
 import { showPaywall } from "../../redux/paywall";
 
-function Posts({p, limit=20}){
+function Posts({posts = [], limit=20}){
     const {loggedIn, userType } = useSelector(state => state.user)
-    const posts = p || useSelector(state => state.posts.posts)
     const paywalled = useSelector(state => state.paywall.paywalled)
     const dispatch = useDispatch()
 

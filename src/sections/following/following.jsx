@@ -7,6 +7,7 @@ import Posts from "../../components/posts/posts";
 function Following(){
     const following = useSelector(state => state.user.following)
     const [followingPosts] = useGet(`${apiHost}/posts`, following)
+
     
     return (
         <div className="content">
