@@ -1,0 +1,9 @@
+.sidebar {
+    background-color: green;
+    width: 30%;
+    height: calc(90vh - var(--navbar-height));
+    padding: 1rem;
+
+    position: sticky;
+    top: calc(var(--navbar-height) + 1rem);
+}

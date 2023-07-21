@@ -5,6 +5,7 @@ import MyPosts from "../../sections/my-posts/my-posts";
 import Following from "../../sections/following/following";
 import Users from "../../sections/users/users";
 import Profile from "../../sections/profile/profile";
+import Sidebar from "../../sections/sidebar/sidebar";
 
 function Home(){
     const location = useLocation()
@@ -29,6 +30,7 @@ function Home(){
         <div id="page-home" className="page">
             <div className="container">
                 { getSection() }
+                <Sidebar />
             </div>
         </div>
     )
