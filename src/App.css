@@ -24,6 +24,13 @@
     width: 95%;
 }
 
+input {
+    outline: 0.1rem solid beige;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
 ul li {
     list-style: none;
 }

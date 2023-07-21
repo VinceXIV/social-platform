@@ -1,6 +1,7 @@
 .login-component {
     width: 50vw;
     padding: 5vw;
+    margin: auto;
 }
 
 .login-form {
@@ -14,4 +15,5 @@
 .login-form .input-container {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
 }

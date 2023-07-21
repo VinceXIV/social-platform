@@ -35,7 +35,6 @@ function Login(){
 
     return (
         <div id="page-login" className="page">
-            <LoginLeft />
             <LoginForm />
         </div>
     )
