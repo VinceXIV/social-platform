@@ -8,6 +8,10 @@
     position: fixed;
 }
 
+#section-header .active {
+    border-bottom: solid 0.1rem white;
+}
+
 #section-header .container {
     display: flex;
     justify-content: space-between;
@@ -17,6 +21,10 @@
     display: flex;
     gap: 1rem;
     align-items: center;
+}
+
+#section-header .action {
+    height: 1.5em;
 }
 
 #section-header .menu {
