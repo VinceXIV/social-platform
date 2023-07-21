@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useGet } from "../../utilities/hooks";
 import "./following.css"
 import apiHost from "../../utilities/api";
-import Feed from "../feed/feed";
+import Posts from "../../components/posts/posts";
 
 function Following(){
     const following = useSelector(state => state.user.following)
@@ -10,7 +10,7 @@ function Following(){
     
     return (
         <div className="content">
-            <Feed posts={followingPosts}/>
+            <Posts posts={followingPosts}/>
         </div>
     )
 }

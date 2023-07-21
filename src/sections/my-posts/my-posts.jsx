@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import apiHost from "../../utilities/api";
 import "./my-posts.css"
 import { useGet } from "../../utilities/hooks";
-import Feed from "../feed/feed";
+import Posts from "../../components/posts/posts";
 
 function MyPosts(){
     const loggedInUserDetails = useSelector(state => state.user.userDetails)
@@ -15,7 +15,7 @@ function MyPosts(){
                 // posts.slice(0, limit). Using -1 means all posts will be shown
                 // There will be no paywall when a user views more than 20 of the
                 // posts they made
-                <Feed posts={myPosts} limit={-1}/>
+                <Posts posts={myPosts} limit={-1}/>
             }
         </div>
     )
