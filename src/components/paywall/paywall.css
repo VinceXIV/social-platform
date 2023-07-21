@@ -11,7 +11,19 @@
     justify-content: center;
 
     animation-name: change-opacity;
+    animation-fill-mode: forwards;
     animation-duration: 1s;
+}
+
+#paywall .amount {
+    color: green;
+    font-size: 1.5rem;
+}
+
+#paywall .amount-info {
+    font-size: 0.8rem;
+    color: beige;
+    font-style: italic;
 }
 
 #paywall .paywall-content {
@@ -19,7 +31,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: blue;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(0.1rem);
+
     width: 40vw;
     display: flex;
     flex-direction: column;
@@ -44,6 +58,12 @@
     list-style-type: disc;
 }
 
+#paywall p,
+#paywall h1,
+#paywall ul li {
+    color: beige;
+}
+
 #paywall .payments {
     display: flex;
     justify-content: center;
@@ -59,6 +79,10 @@
 
 #paywall .details {
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 #paywal button {

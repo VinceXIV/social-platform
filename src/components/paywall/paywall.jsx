@@ -44,7 +44,7 @@ function Paywall(){
                     <div className="payment-option">
                         <p className="details">
                             <span className="amount">$8 </span>
-                            (33% off)
+                            <span className="amount-info">(33% off)</span>
                         </p>
                         <p className="details">Yearly plan</p>
                         <Button text='Subscribe' action={handlePaymentClick} />
