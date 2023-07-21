@@ -32,19 +32,26 @@ function Post({post}){
         }
     }, [setComments, paywalled])
 
-    function handlePostClick(){
-        // Get comments related to this post element as rendered on dom
+    function toggleShowPost(){
         const comments = postRef.current.querySelector('.comments')
+        if(Array.from(comments.classList).find(c => c === 'display-none')){
+            const postBody = postRef.current.querySelector('.body')
+            postBody.classList.toggle('display-none')
+        }
+    }
 
-        comments.classList.toggle('display-none')
+    function toggleShowComments(e){
+        e.stopPropagation()
+        const comments = postRef.current.querySelector('.comments')
+        comments.classList.toggle('display-none')      
     }
 
     return (
-        <div ref={postRef} id="component-post" className="component" onClick={handlePostClick}>
+        <div ref={postRef} id="component-post" className="component" onClick={toggleShowPost}>
             <h2 className="post-title">{post.title}</h2>
-            <p className="body">{post.body}</p>
+            <p className="body display-none" onClick={toggleShowComments}>{post.body}</p>
 
-            <div id={`post-${post.id}-comments`} className="comments display-none">
+            <div id={`post-${post.id}-comments`} className="comments display-none" onClick={toggleShowComments}>
                 {
                     comments.map(comment => {
                         return (
