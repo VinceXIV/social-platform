@@ -2,3 +2,7 @@
     display: flex;
     justify-content: space-between;
 }
+
+.app-users .user-details.blocked {
+    opacity: 0.7;
+}

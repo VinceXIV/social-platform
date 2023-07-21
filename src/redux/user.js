@@ -63,13 +63,16 @@ export const counterSlice = createSlice({
     },
 
     unblock: (state, userId) => {
-      state.following = state.blocked.filter(f => f !== userId.payload)
+      state.blocked = state.blocked.filter(f => f !== userId.payload)
       localStorage.setItem('data', JSON.stringify(state))     
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { login, logout, updateUserType,setFollowing, follow, unfollow } = counterSlice.actions
+export const { 
+  login, logout, updateUserType,
+  setFollowing, follow, unfollow,
+  block, unblock } = counterSlice.actions
 
 export default counterSlice.reducer

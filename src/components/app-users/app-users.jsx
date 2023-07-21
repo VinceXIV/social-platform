@@ -3,11 +3,12 @@ import apiHost from "../../utilities/api";
 import "./app-users.css"
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../elements/button/button";
-import { follow, unfollow } from "../../redux/user";
+import { follow, unfollow, block, unblock } from "../../redux/user";
 
 function FollowingUsers(){
     const [allUsers] = useGet(`${apiHost}/users`)
     const following = useSelector(state => state.user.following)
+    const blocked = useSelector(state => state.user.blocked)
     const dispatch = useDispatch()
 
 
@@ -17,6 +18,10 @@ function FollowingUsers(){
         return !!following.find(fId => fId === userId)
     }
 
+    function isBlocked(userId){
+        return !!blocked.find(bId => bId === userId)
+    }
+
     console.log("all users: ", allUsers)
 
     return (
@@ -24,16 +29,29 @@ function FollowingUsers(){
             {
                 allUsers.map(user => {
                     return (
-                        <div key={`app-user-${user.id}`} className="user-details">
-                            <p>{user.name}</p>
+                        <div key={`app-user-${user.id}`}
+                            className={`user-details ${isBlocked(user.id)? 'blocked': ''}`}>
+
+                            <p >{user.name}</p>
+
                             <div>
                                 {
-                                    isFollowing(user.id) ?
-                                        <Button text="Unfollow" action={()=>dispatch(unfollow(user.id))} />
+                                    // If this user is blocked, then only show the unblock button
+                                    // otherwise, show both the follow/unfollow and the block button
+                                    isBlocked(user.id) ?
+                                        <Button text='Unblock' action={()=>dispatch(unblock(user.id))}/>
+                                    : isFollowing(user.id) ?
+                                        <>
+                                            <Button text="Unfollow" action={()=>dispatch(unfollow(user.id))} />
+                                            <Button text='Block' action={()=>dispatch(block(user.id))}/>                                        
+                                        </>
+
                                     :
-                                    <Button text="Follow" action={()=>dispatch(follow(user.id))} />
+                                        <>
+                                            <Button text="Follow" action={()=>dispatch(follow(user.id))} />
+                                            <Button text='Block' action={()=>dispatch(block(user.id))}/>                                        
+                                        </>
                                 }
-                                <Button text='Block' action={()=>dispatch(block(user.id))}/>
                             </div>
                         </div>
                     )
