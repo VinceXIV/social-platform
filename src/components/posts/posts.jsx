@@ -8,13 +8,13 @@ import { cosine } from "string-comparison";
 import { setPosts } from "../../redux/posts";
 import { useEffect } from "react";
 
-function Posts({data}){
+function Posts(){
     const paywalled = useSelector(state => state.paywall.paywalled)
     const dispatch = useDispatch()
     const [searchInput, setSearchInput] = useState('')
     const blockedUsers = useSelector(state => state.user.blocked)
     const blockedPosts = useSelector(state => state.posts.blocked)
-    const posts = data ? data : []
+    const posts = useSelector(state => state.posts.posts)
 
     useEffect(()=>{
         // Sort posts based on how similar they are with the search term

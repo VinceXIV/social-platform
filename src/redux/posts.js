@@ -43,7 +43,13 @@ export const counterSlice = createSlice({
 
   reducers: {
     setPosts: (state, data) => {
-        state.posts = data.payload
+        state.posts = data.payload.map(p => {
+            return {
+                ...p,
+                likes: Math.floor(Math.random()*50),
+                views: Math.floor(Math.random()*5000)
+            }
+        })
     },
 
     addPost: (state, data) => {
