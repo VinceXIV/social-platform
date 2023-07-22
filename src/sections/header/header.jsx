@@ -10,9 +10,9 @@ function Header(){
     const userDetails = useSelector(state => state.user.userDetails)
 
     const actions = [
+        {name: 'Feed', path: '/home/feed'},
         {name: 'Following', path: '/home/following'},
         {name: 'My Posts', path: '/home/my-posts'},
-        {name: 'Feed', path: '/home/feed'},
         {name: userDetails.name, path: `/users/${userDetails.id}/profile`}
     ]
 
