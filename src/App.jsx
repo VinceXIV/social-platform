@@ -20,8 +20,9 @@ function App() {
     }
   }, [updateViewMode])
 
-  function updateViewMode(e){
-    if(e.innerWidth > mobileThreshold){
+  function updateViewMode(){
+    console.log(window.innerWidth)
+    if(window.innerWidth > mobileThreshold){
       dispatch(updateView('desktop'))
     }else {
       dispatch(updateView('mobile'))
