@@ -15,6 +15,8 @@
     padding: 1vw 2vw;
     position: relative;
     padding-top: calc(var(--navbar-height) + 1rem);
+    background-color: #f7f7ff;
+
 }
 
 .container {

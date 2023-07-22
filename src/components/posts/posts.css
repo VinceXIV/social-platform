@@ -1,3 +1,10 @@
+#section-posts {
+    background-color: white;
+    padding: 0.5rem;
+    outline: solid 0.1rem #d4d4d4;
+
+}
+
 #section-posts form {
     width: 100%;
     border-top-left-radius: 1rem;
@@ -14,6 +21,8 @@
     gap: 1rem;
 
     flex-wrap: wrap;
+    position: sticky;
+    top: calc(1rem + var(--navbar-height));
 }
 
 #section-posts form .width-n-input {
