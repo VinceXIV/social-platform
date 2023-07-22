@@ -11,11 +11,6 @@ function DesktopHeader({actions, getActiveState}){
 
     return (
         <ul id="desktop-header" className="menu">
-            <li className={`action ${getActiveState('/home/feed')}`}
-                onClick={()=>navigate('home/feed')}>
-                Feed
-            </li>
-
             {
                 loggedIn ?
                     <>
