@@ -9,3 +9,7 @@
 #page-profile .detail {
     padding: 0.5rem 0;
 }
+
+#page-profile .user-name {
+    padding: 0.1rem;
+}

@@ -25,27 +25,32 @@ function Profile(){
     // we extract that id and fetch the details related to that id
     // which is then rendered
     const [,,userId] = location.pathname.split("/")
-    const details = useGet(`${apiHost}/users/${userId}`)
-    userDetails = details
+    userDetails = useGet(`${apiHost}/users/${userId}`)
+    
 
     // userDetails is an object, which is also nested in certain instances.
     // In this function, I convert the nested object into a nested array
     // of the <ProfileInfo /> component, through recursion
-    function arrayFyDetails(details){
+    function arrayFyDetails(details, append=''){
         const result = []
 
         for(const key of Object.keys(details)){
+
+            if(key === 'name' || key === 'id'){
+                continue
+            }
+
             if(typeof(details[key]) === 'string'){
                 result.push(
-                    <ProfileInfo key={`top-level-profile-${key}`} name={key} value={details[key]}/>
+                    <ProfileInfo key={`top-level-profile-${append}-${key}`} name={key} value={details[key]}/>
                 )
             }else if(typeof(details[key]) === 'object'){
                 result.push(
-                    <div key={`top-level-profile-${key}`} className="detail">
+                    <div key={`second-level-profile-${append}-${key}`} className="detail">
                         <p className="title">{key}</p>
                         <div className="sub-detail">
                             {
-                                arrayFyDetails(details[key])
+                                arrayFyDetails(details[key], key)
                             }
                         </div>
                     </div>
@@ -56,11 +61,13 @@ function Profile(){
         return result;
     }
 
+    
+
     return (
         <div id="page-profile" className="page">
             <div className="container">
                 <div id="section-profile" className="content">
-                    <h1>{userDetails.name}</h1>
+                    <h1 className="user-name">{userDetails[0].name}</h1>
                     <div className="user-info">{ arrayFyDetails(userDetails) }</div>
                 </div>
             </div>
