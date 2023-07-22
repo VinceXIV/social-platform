@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { makeViewed, makeLiked, makeUnliked } from "../../redux/posts";
 import { regularUserLimit } from "../../utilities/variables";
+import { block } from "../../redux/posts";
 import { showPaywall } from "../../redux/paywall";
 import Button from "../../elements/button/button";
 
@@ -87,7 +88,7 @@ function Post({post}){
                 {post.title}
                 <ul className="header-buttons">
                     <li><Button text={postState.hidden? 'view': 'hide'} action={()=>handlePostClick(post.id)} /></li>
-                    <li><Button text="Block" /></li>
+                    <li><Button text="Block" action={()=>dispatch(block(post.id))} /></li>
                 </ul>
             </h2>
 

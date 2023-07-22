@@ -136,6 +136,8 @@ export const counterSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const {setPosts, addPost, deletePost, updatePost, setLoggedInUserPosts, makeViewed, makeLiked, makeUnliked } = counterSlice.actions
+export const {setPosts, addPost, deletePost, updatePost,
+    setLoggedInUserPosts, makeViewed, makeLiked,
+    makeUnliked, block } = counterSlice.actions
 
 export default counterSlice.reducer
