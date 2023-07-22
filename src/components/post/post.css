@@ -24,6 +24,15 @@
     outline: solid 0.1rem crimson;
 }
 
+#component-post .post-content {
+    border-radius: 1rem;
+}
+
+#component-post.blocking .post-content{
+    background-color: beige;
+    padding: 1rem;
+}
+
 #component-post.paywalled {
     opacity: 0.3;
 }

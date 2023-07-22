@@ -85,66 +85,72 @@ function Post({post}){
         setPostState(postState => ({...postState, blocking: true}))
     }
 
+    function cancelBlockProcess(){
+        setPostState(postState => ({...postState, blocking: false}))
+    }
+
     return (
         <div ref={postRef} id="component-post" className={`component ${postState.blocking? 'blocking': ''}`} >
+            {/* this will appear when one is trying to block the post */}
             <div className={`${postState.blocking? 'block-confirm': 'display-none'}`}>
                 <h1>You are about to block this post</h1>
 
                 <div>
-                    <Button text="Confirm"/>
-                    <Button text="Cancel" />
+                    <Button text="Confirm" action={()=>dispatch(block(post.id))}/>
+                    <Button text="Cancel" action={cancelBlockProcess}/>
                 </div>
             </div>
 
-            <h2 className="post-title">
-                {post.title}
-                <ul className="header-buttons">
-                    <li><Button text={postState.hidden? 'view': 'hide'} action={()=>handlePostClick(post.id)} /></li>
-                    <li><Button text="Block" action={handleBlockClick} /></li>
-                </ul>
-            </h2>
+            {/* This is the whole of the post that would normally be rendered */}
+            <div className="post-content">
+                <h2 className="post-title">
+                    {post.title}
+                    <ul className="header-buttons">
+                        <li><Button text={postState.hidden? 'view': 'hide'} action={()=>handlePostClick(post.id)} /></li>
+                        <li><Button text="Block" action={handleBlockClick} /></li>
+                    </ul>
+                </h2>
 
-            <div className={`body ${postState.hidden? 'display-none': ''}`}>
+                <div className={`body ${postState.hidden? 'display-none': ''}`}>
 
-                <p>{post.body}</p>
+                    <p>{post.body}</p>
 
-                <ul className="activity" onClick={handleActivityClick}>
-                    <li className="activity-item" onClick={handleLikeClick}>
+                    <ul className="activity" onClick={handleActivityClick}>
+                        <li className="activity-item" onClick={handleLikeClick}>
+                            {
+                                likedPosts.find(lId => lId === post.id)? 
+                                    <i className="fa-solid fa-heart"></i>
+                                :
+                                <i className="fa-regular fa-heart"></i>
+                            }
+                            {post.likes} likes
+                        </li>
+
+                        <li className="activity-item">
+                            <i className="fa-regular fa-eye"></i>
+                            <p>{post.views} views</p>
+                        </li>
+
+                        <li className="activity-item" onClick={toggleShowComments}>
+                            <i className="fa-regular fa-comment"></i>
+                            <p>{postState.comments.length} comments</p>                        
+                        </li>
+                    </ul>
+                    
+                    <div id={`post-${post.id}-comments`} className="comments display-none" onClick={toggleShowComments}>
                         {
-                            likedPosts.find(lId => lId === post.id)? 
-                                <i className="fa-solid fa-heart"></i>
-                            :
-                            <i className="fa-regular fa-heart"></i>
+                            postState.comments.map(comment => {
+                                return (
+                                    <div key={`post-${post.id}-comment-${comment.id}`} className="comment" >
+                                        <h3 className="comment-title">{comment.name}</h3>
+                                        <p >{comment.body}</p>
+                                    </div>
+                                )
+                            })
                         }
-                        {post.likes} likes
-                    </li>
-
-                    <li className="activity-item">
-                        <i className="fa-regular fa-eye"></i>
-                        <p>{post.views} views</p>
-                    </li>
-
-                    <li className="activity-item" onClick={toggleShowComments}>
-                        <i className="fa-regular fa-comment"></i>
-                        <p>{postState.comments.length} comments</p>                        
-                    </li>
-                </ul>
-                
-                <div id={`post-${post.id}-comments`} className="comments display-none" onClick={toggleShowComments}>
-                    {
-                        postState.comments.map(comment => {
-                            return (
-                                <div key={`post-${post.id}-comment-${comment.id}`} className="comment" >
-                                    <h3 className="comment-title">{comment.name}</h3>
-                                    <p >{comment.body}</p>
-                                </div>
-                            )
-                        })
-                    }
+                    </div>
                 </div>
             </div>
-
-
         </div>
     )
 }
