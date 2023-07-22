@@ -9,7 +9,7 @@ import { showPaywall } from "../../redux/paywall";
 import Button from "../../elements/button/button";
 
 function Post({post}){
-    const [comments, setComments] = useState([]) // By default, don't show the comments
+    const [postState, setPostState] = useState({comments: [], hidden: true})
     const viewedPosts = useSelector(state => state.posts.viewed)
     const likedPosts = useSelector(state => state.posts.liked)
     const paywalled = useSelector(state => state.paywall.paywalled)
@@ -25,7 +25,7 @@ function Post({post}){
 
             if(res.ok){
                 res.json().then(data => {
-                    setComments(data)
+                    setPostState(postState => ({...postState, comments: data}))
                 })
             }
         })
@@ -37,26 +37,25 @@ function Post({post}){
         }else{
             postRef.current.classList.remove('paywalled')
         }
-    }, [setComments, paywalled])
+    }, [setPostState, paywalled])
 
     function getDiv(cssSelector){
         return postRef.current.querySelector(cssSelector)
     }
 
     function handlePostClick(postId){
-        const postBody = getDiv('.body')
-
-        // If a user has already viewed 20 posts
-        if(viewedPosts.length >= 20){
+        if(!postState.hidden){
+            setPostState(postState => ({...postState, hidden: true}))
+        }else if(viewedPosts.length >= 20){
             // If they are a premium user, or this post is simply them 
             // reopening one of the posts they have already viewed
             if(userType === 'premium' || viewedPosts.find(p => p === postId)){  
-                postBody.classList.toggle('display-none')
+                setPostState(postState => ({...postState, hidden: false}))
             }else { // Else they should pay
                 dispatch(showPaywall(["You have reached today's limit of 20 posts.", "Join premium to view more"]))
             }
         }else {
-            postBody.classList.toggle('display-none')
+            setPostState(postState => ({...postState, hidden: false}))
             dispatch(makeViewed(postId)) // Register this post as viewed
         }
     }
@@ -82,14 +81,16 @@ function Post({post}){
 
     return (
         <div ref={postRef} id="component-post" className="component" >
+
             <h2 className="post-title">
                 {post.title}
                 <ul className="header-buttons">
-                    <li><Button text="view" action={()=>handlePostClick(post.id)} /></li>
+                    <li><Button text={postState.hidden? 'view': 'hide'} action={()=>handlePostClick(post.id)} /></li>
                     <li><Button text="Block" /></li>
                 </ul>
             </h2>
-            <div className="body display-none">
+
+            <div className={`body ${postState.hidden? 'display-none': ''}`}>
 
                 <p>{post.body}</p>
 
@@ -111,24 +112,25 @@ function Post({post}){
 
                     <li className="activity-item" onClick={toggleShowComments}>
                         <i className="fa-regular fa-comment"></i>
-                        <p>{comments.length} comments</p>                        
+                        <p>{postState.comments.length} comments</p>                        
                     </li>
                 </ul>
+                
+                <div id={`post-${post.id}-comments`} className="comments display-none" onClick={toggleShowComments}>
+                    {
+                        postState.comments.map(comment => {
+                            return (
+                                <div key={`post-${post.id}-comment-${comment.id}`} className="comment" >
+                                    <h3 className="comment-title">{comment.name}</h3>
+                                    <p >{comment.body}</p>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
             </div>
 
 
-            <div id={`post-${post.id}-comments`} className="comments display-none" onClick={toggleShowComments}>
-                {
-                    comments.map(comment => {
-                        return (
-                            <div key={`post-${post.id}-comment-${comment.id}`} className="comment" >
-                                <h3 className="comment-title">{comment.name}</h3>
-                                <p >{comment.body}</p>
-                            </div>
-                        )
-                    })
-                }
-            </div>
         </div>
     )
 }
