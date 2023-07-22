@@ -5,7 +5,8 @@
 // arrays of ids of posts the user viewed or liked, respectively
 // allPosts, on the other hand, is an array of objects which
 // are in the form {title: "the quick brown fox", body: "blah blah blah"}
-function getRecommendation(viewedPostIds, likedPostIds, allPosts){  
+function getRecommendations(viewedPostIds, likedPostIds, allPosts, limit=5){  
+    
     // Viewed posts but not liked
     const unlikedPostIds = viewedPostIds.filter(viewedPostId => {
         for(const likedPostId of likedPostIds){
@@ -44,21 +45,31 @@ function getRecommendation(viewedPostIds, likedPostIds, allPosts){
     })
 
     // Sort the unviewed posts in the order a user would likely like to 
-    // view them
-    return unviewedPosts.sort((a, b) => {
+    const sortedPosts =  randomize(unviewedPosts).sort((a, b) => {
         const probabilityOfLikingA  = pLikingWords(pLiking, likedPostWords, getWords([a]))
-        const probabilityOfUnLikingA  = pLikingWords(pLiking, unlikedPostWords, getWords([a]))
+        const probabilityOfUnLikingA  = pLikingWords(pUnliking, unlikedPostWords, getWords([a]))
         const probabilityOfLikingB = pLikingWords(pLiking, likedPostWords, getWords([b]))
-        const probabilityOfUnLikingB = pLikingWords(pLiking, unlikedPostWords, getWords([b]))
+        const probabilityOfUnLikingB = pLikingWords(pUnliking, unlikedPostWords, getWords([b]))
 
         const likeUnlikeA =  probabilityOfLikingA/probabilityOfUnLikingA
         const likeUnlikeB =  probabilityOfLikingB/probabilityOfUnLikingB
 
-        console.log(likeUnlikeA, likeUnlikeB)
-
         // The relative probability of liking a over simply viewing the post and nothing
         // is greater than that of b
         return likeUnlikeB - likeUnlikeA
+    })
+
+    // Pick the first n posts
+    return sortedPosts.slice(0, limit)
+}
+
+// First shuffle it so that we don't end up with the same list the
+// function got in in cases where there is no "training" data. That is, the
+// user hasn't liked or viewed any post yet. In that case, the recommended
+// list might end up looking the same as the array of post we got
+function randomize(posts){
+    return posts.sort(() => {
+        return Math.random() - Math.random()
     })
 }
 
@@ -163,4 +174,7 @@ const viewedPostIds = [1, 2, 5]
 //     { id: 4, title: 'I love lasagna' },
 //     { id: 6, title: 'and now the end is near' }
 // ]
-console.log(getRecommendation(viewedPostIds, likedPostIds, allPosts))
+console.log(getRecommendations(viewedPostIds, likedPostIds, allPosts))
+
+
+export default getRecommendations;
