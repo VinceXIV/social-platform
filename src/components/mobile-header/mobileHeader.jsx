@@ -3,7 +3,8 @@ import { useEffect } from "react";
 import "./mobileHeader.css"
 import Button from "../../elements/button/button";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/user";
 
 
 function MobileHeader({actions, getActiveState}){
@@ -11,6 +12,7 @@ function MobileHeader({actions, getActiveState}){
     const headerRef = useRef()
     const navigate = useNavigate()
     const loggedIn = useSelector(state => state.user.loggedIn)
+    const dispatch = useDispatch()
 
     useEffect(()=>{ 
         const btn = headerRef.current?.querySelector('button.effect1')
@@ -40,14 +42,14 @@ function MobileHeader({actions, getActiveState}){
             }
             
             {/* The hurmbuger icon */}
-            <div ref={headerRef} className="wrapper">
+            <div ref={headerRef} className={`wrapper ${loggedIn? '': 'display-none'}`}>
                 <button className="effect1">
                     <span className={showActions? 'active': ''}></span>
                 </button>
             </div>
 
             {/* the options e.g feed, my posts, etc */}
-            <div className={`actions-container ${showActions? '': 'display-none'}`}>
+            <div className={`actions-container ${showActions && loggedIn? '': 'display-none'}`}>
                 <ul className="actions">
                     {
                         actions.map((action, i) => {
