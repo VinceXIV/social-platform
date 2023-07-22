@@ -47,6 +47,30 @@ ul li {
     background-color: red;
 }
 
+/* STYLING THE SCROLL BAR */
+/* https://www.digitalocean.com/community/tutorials/css-scrollbars */
+
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: aquamarine beige;
+  }
+  
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 0.8rem;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: beige;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: aquamarine;
+    border-radius: 1.25rem;
+    border: 0.1875rem solid beige;
+  }
+
 @media only screen and (max-width: 50rem) {
     .sidebar {
         display: none;
