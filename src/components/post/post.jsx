@@ -123,12 +123,12 @@ function Post({post}){
                                 :
                                 <i className="fa-regular fa-heart"></i>
                             }
-                            {post.likes} likes
+                            {post.likes || 0} likes
                         </li>
 
                         <li className="activity-item">
                             <i className="fa-regular fa-eye"></i>
-                            <p>{post.views} views</p>
+                            <p>{post.views || 1} views</p>
                         </li>
 
                         <li className="activity-item" onClick={toggleShowComments}>
