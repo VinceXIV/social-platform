@@ -9,8 +9,16 @@ function Following(){
     const [followingPosts] = useGet(`${apiHost}/posts`, following)
     
     return (
-        <div className="content">
+        <div id="section-following" className="content">
             <Posts data={followingPosts}/>
+            {
+                ! following.length ?
+                    <div className="not-following">
+                        <p className="info">You are currently not following any user</p>
+                        <p className="call-to-action">Click the follow button to see their posts</p>
+                    </div>
+                : ''
+            }
         </div>
     )
 }

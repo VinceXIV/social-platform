@@ -1,0 +1,14 @@
+#section-following .not-following {
+    text-align: center;
+    padding-top: 5vw;
+    padding-bottom: 5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+#section-following .call-to-action {
+    font-size: 1.3rem;
+}
