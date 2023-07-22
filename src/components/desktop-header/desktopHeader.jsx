@@ -6,7 +6,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 function DesktopHeader({actions}){
     const loggedIn = useSelector(state => state.user.loggedIn)
-    const userDetails = useSelector(state => state.user.userDetails)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation()
