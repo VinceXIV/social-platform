@@ -1,11 +1,12 @@
 import "./sidebar.css"
 import FollowingUsers from "../../components/app-users/app-users"
+import Recommended from "../../components/recommended/recommended"
 
 function Sidebar(){
 
     function getComponent(){
         if(location.pathname === '/home/feed'){
-            return <FollowingUsers />
+            return <Recommended />
         }else if(location.pathname === '/home/my-posts'){
             return <FollowingUsers />
         }else if(location.pathname === '/home/users'){
