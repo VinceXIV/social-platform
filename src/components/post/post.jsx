@@ -39,7 +39,7 @@ function Post({post}){
         }else{
             postRef.current.classList.remove('paywalled')
         }
-    }, [setPostState, paywalled])
+    }, [setPostState, paywalled, post])
 
     function getDiv(cssSelector){
         return postRef.current.querySelector(cssSelector)

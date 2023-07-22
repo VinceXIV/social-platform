@@ -6,6 +6,10 @@
     width: 100%;
 }
 
-#recommended-for-you .posts {
+#recommended-for-you .post {
     margin: 0.5rem 0;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
 }
