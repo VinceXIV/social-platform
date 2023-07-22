@@ -29,12 +29,15 @@ function LoginForm(){
 
             // If there exists user with the username and password submitted
             if(!!user.length){
-                // Go to the next stage of the request. In this case
-                // Move from "processing" to "completed"
-                dispatch(goToNextStage('login'))
-
-                // Also save the details of the user who has logged in
-                dispatch(login(user[0]))
+                console.log(user[0])
+                if(user[0].address.zipcode === formData.password){
+                    // Go to the next stage of the request. In this case
+                    // Move from "processing" to "completed"
+                    dispatch(goToNextStage('login'))
+    
+                    // Also save the details of the user who has logged in
+                    dispatch(login(user[0]))
+                }
             }
         }else {
             res.json().then(error => console.warn(error))
