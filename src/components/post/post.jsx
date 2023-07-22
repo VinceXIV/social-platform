@@ -44,31 +44,19 @@ function Post({post}){
     }
 
     function handlePostClick(postId){
-        const comments = getDiv('.comments')
         const postBody = getDiv('.body')
 
         // If a user has already viewed 20 posts
         if(viewedPosts.length >= 20){
             // If they are a premium user, or this post is simply them 
             // reopening one of the posts they have already viewed
-            if(userType === 'premium' || viewedPosts.find(p => p === postId)){
-                
-                // We don't want to display-none a post body when the comments 
-                // are being displayed. At the least, comments should only be 
-                // shown when the post is being shown too
-                if(Array.from(comments.classList).find(c => c === 'display-none')){
-                    postBody.classList.toggle('display-none')
-                }
+            if(userType === 'premium' || viewedPosts.find(p => p === postId)){  
+                postBody.classList.toggle('display-none')
             }else { // Else they should pay
                 dispatch(showPaywall(["You have reached today's limit of 20 posts.", "Join premium to view more"]))
             }
         }else {
-            // We don't want to display-none a post body when the comments 
-            // are being displayed. At the least, comments should only be 
-            // shown when the post is being shown too
-            if(Array.from(comments.classList).find(c => c === 'display-none')){
-                postBody.classList.toggle('display-none')
-            }
+            postBody.classList.toggle('display-none')
             dispatch(makeViewed(postId)) // Register this post as viewed
         }
     }
