@@ -4,8 +4,30 @@ import Login from './pages/login/login'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/home/home'
 import Profile from './pages/profile/profile'
+import { useEffect } from 'react'
+import { mobileThreshold } from './utilities/variables'
+import { useDispatch } from 'react-redux'
+import { updateView } from './redux/view'
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    window.addEventListener('resize', updateViewMode)
+
+    return ()=>{
+      window.removeEventListener('resize', updateViewMode)
+    }
+  }, [updateViewMode])
+
+  function updateViewMode(e){
+    if(e.innerWidth > mobileThreshold){
+      dispatch(updateView('desktop'))
+    }else {
+      dispatch(updateView('mobile'))
+    }
+  }
+
   return (
     <>
       <Header />
