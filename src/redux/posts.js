@@ -29,11 +29,11 @@ if(res.ok){
 // We use the posts we got above to set it as the
 // default state of the posts to be shown to the user
 const initialState = {
-    posts: posts, // These are posts by the users of the social app
-    viewed: [], // Will contain a list of posts for which the user has viewed
-    liked: [],
-    unliked: [], // Holds a list of posts that were previously liked but not any more
-    blocked: []
+    posts: JSON.parse(localStorage.getItem('posts') || null)?.posts || posts, // These are posts by the users of the social app
+    viewed: JSON.parse(localStorage.getItem('posts') || null)?.viewed || [], // Will contain a list of posts for which the user has viewed
+    liked: JSON.parse(localStorage.getItem('posts') || null)?.liked || [],
+    unliked: JSON.parse(localStorage.getItem('posts') || null)?.unliked || [], // Holds a list of posts that were previously liked but not any more
+    blocked: JSON.parse(localStorage.getItem('posts') || null)?.blocked || []
 }
 
 export const counterSlice = createSlice({
@@ -50,18 +50,23 @@ export const counterSlice = createSlice({
                 views: Math.floor(Math.random()*5000)
             }
         })
+
+        localStorage.setItem('post', JSON.stringify(state))
     },
 
     addPost: (state, data) => {
         state.posts = [...state.posts, data.payload]
+        localStorage.setItem('post', JSON.stringify(state))
     },
 
     deletePost: (state, data) => {
         state.posts = state.posts.filter(post => post.id !== data.payload.id)
+        localStorage.setItem('post', JSON.stringify(state))
     },
 
     block: (state, postId) => {
         state.blocked.push(postId.payload)
+        localStorage.setItem('post', JSON.stringify(state))
     },
 
     updatePost: (state, data) => {
@@ -72,6 +77,7 @@ export const counterSlice = createSlice({
                 return post
             }
         })
+        localStorage.setItem('post', JSON.stringify(state))
     },
 
     makeViewed: (state, postId) => {
@@ -92,6 +98,7 @@ export const counterSlice = createSlice({
         viewedPosts.push(postId.payload)
 
         state.viewed = Array.from(new Set(viewedPosts))
+        localStorage.setItem('post', JSON.stringify(state))
     },
 
     makeLiked: (state, postId) => {
@@ -115,6 +122,7 @@ export const counterSlice = createSlice({
         likedPosts.push(postId.payload)
 
         state.liked = Array.from(new Set(likedPosts))
+        localStorage.setItem('post', JSON.stringify(state))
     },
 
     makeUnliked: (state, postId) => {
@@ -137,6 +145,7 @@ export const counterSlice = createSlice({
         unlikedPosts.push(postId.payload)
 
         state.unliked = Array.from(new Set(unlikedPosts))
+        localStorage.setItem('post', JSON.stringify(state))
     }
   },
 })
