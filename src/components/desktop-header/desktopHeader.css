@@ -1,39 +1,29 @@
-#section-header {
-    width: 100vw;
-    height: var(--navbar-height);
-    background-color: aquamarine;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    position: fixed;
-}
-
-#section-header .action {
+#desktop-header .action {
     display: flex;
     align-items: center;
     padding: 1rem 0;
 }
 
-#section-header .action.active {
+#desktop-header .action.active {
     border-bottom: solid 0.1rem beige;
 }
 
-#section-header .container {
+#desktop-header .container {
     display: flex;
     justify-content: space-between;
 }
 
-#section-header .actions {
+#desktop-header .actions {
     display: flex;
     gap: 1rem;
     align-items: center;
 }
 
-#section-header .action {
+#desktop-header .action {
     height: 1.5em;
 }
 
-#section-header .menu {
+#desktop-header.menu {
     display: flex;
     gap: 1rem;
     align-items: center;

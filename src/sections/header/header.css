@@ -8,12 +8,6 @@
     position: fixed;
 }
 
-#section-header .action {
-    display: flex;
-    align-items: center;
-    padding: 1rem 0;
-}
-
 #section-header .action.active {
     border-bottom: solid 0.1rem beige;
 }
@@ -21,21 +15,4 @@
 #section-header .container {
     display: flex;
     justify-content: space-between;
-}
-
-#section-header .actions {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
-
-#section-header .action {
-    height: 1.5em;
-}
-
-#section-header .menu {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    cursor: pointer;
 }

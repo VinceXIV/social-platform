@@ -20,7 +20,7 @@ function DesktopHeader(){
     }
 
     return (
-        <ul className="menu">
+        <ul id="desktop-header" className="menu">
             <li className={`action ${getActiveState('/home/feed')}`}
                 onClick={()=>navigate('home/feed')}>
                 Feed
