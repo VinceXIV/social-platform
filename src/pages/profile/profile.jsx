@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ProfileInfo from "../../components/profile-info/profile-info";
 import apiHost from "../../utilities/api";
 import { useGet } from "../../utilities/hooks";
@@ -7,6 +8,16 @@ import "./profile.css"
 
 function Profile(){
     const location = useLocation()
+    const loggedIn = useSelector(state => state.user.loggedIn)
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+        if(!loggedIn){
+            navigate('/home/feed')
+        }
+    }, [loggedIn])
+
+    
     // const [userDetails, setUserDetails] = useState([])
     let userDetails = [] 
 
@@ -30,9 +41,9 @@ function Profile(){
                 )
             }else if(typeof(details[key]) === 'object'){
                 result.push(
-                    <div key={`top-level-profile-${key}`}>
+                    <div key={`top-level-profile-${key}`} className="detail">
                         <p className="title">{key}</p>
-                        <div style={{paddingLeft: '2rem'}}>
+                        <div className="sub-detail">
                             {
                                 arrayFyDetails(details[key])
                             }
@@ -49,6 +60,7 @@ function Profile(){
         <div id="page-profile" className="page">
             <div className="container">
                 <div id="section-profile" className="content">
+                    <h1>{userDetails.name}</h1>
                     <div className="user-info">{ arrayFyDetails(userDetails) }</div>
                 </div>
             </div>
