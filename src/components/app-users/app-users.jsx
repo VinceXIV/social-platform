@@ -30,11 +30,11 @@ function FollowingUsers(){
         }
     }
 
-    function handleBlockClick(){
+    function handleBlockClick(userId){
         if(userType === 'regular'){
             dispatch(showPaywall(['Unlock more features with premium subscription']))
         }else {
-            dispatch(block(user.id))
+            dispatch(block(userId))
         }
     }
 
@@ -65,13 +65,13 @@ function FollowingUsers(){
                                     : isFollowing(user.id) ?
                                         <>
                                             <Button text="Unfollow" action={()=>dispatch(unfollow(user.id))} />
-                                            <Button text='Block' action={handleBlockClick}/>                                        
+                                            <Button text='Block' action={()=>handleBlockClick(user.id)}/>                                        
                                         </>
 
                                     :
                                         <>
                                             <Button text="Follow" action={()=>dispatch(follow(user.id))} />
-                                            <Button text='Block' action={handleBlockClick}/>                                        
+                                            <Button text='Block' action={()=>handleBlockClick(user.id)}/>                                        
                                         </>
                                 }
                             </div>
