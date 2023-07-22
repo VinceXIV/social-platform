@@ -3,9 +3,11 @@ import { useEffect } from "react";
 import "./mobileHeader.css"
 import Button from "../../elements/button/button";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 function MobileHeader(){
     const headerRef = useRef()
     const navigate = useNavigate()
+    const loggedIn = useSelector(state => state.user.loggedIn)
 
     useEffect(()=>{ 
 
@@ -26,7 +28,12 @@ function MobileHeader(){
 
     return (
         <div id="component-mobile-header">
-            <Button text="Login" action={()=> navigate('login')}/>
+            {
+                loggedIn ? 
+                    <Button text="Logout" action={()=>dispatch(logout())} />
+                :   <Button text="Login" action={()=> navigate('login')}/>
+            }
+            
             <div ref={headerRef} className="wrapper">
                 <button className="effect1">
                     <span></span>
