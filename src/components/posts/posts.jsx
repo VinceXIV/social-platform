@@ -12,6 +12,8 @@ function Posts({initialPosts = []}){
     const paywalled = useSelector(state => state.paywall.paywalled)
     const dispatch = useDispatch()
     const [searchInput, setSearchInput] = useState('')
+    const blockedUsers = useSelector(state => state.user.blocked)
+    const blockedPosts = useSelector(state => state.posts.blocked)
     const posts = initialPosts.length? initialPosts : useSelector(state => state.posts.posts)
 
     useEffect(()=>{
@@ -26,6 +28,21 @@ function Posts({initialPosts = []}){
 
         dispatch(setPosts(sortedPosts))
     }, [searchInput])
+
+    console.log("blocked users: ", blockedUsers)
+    console.log("blocked posts: ", blockedPosts)
+
+
+    function getShowablePosts(posts){
+        // Return only posts that are not blocked or the people who
+        // created the post are not blocked
+        return posts.filter(post => {
+            const postIsNotBlocked = !blockedPosts.find(blockedPostId => blockedPostId === post.id)
+            const userIsNotBlocked = !blockedUsers.find(blockedUserId => blockedUserId === post.userId)
+            console.log(postIsNotBlocked, userIsNotBlocked)
+            return postIsNotBlocked && userIsNotBlocked
+        })
+    }
 
     function handleSearchInputChange(e){
         setSearchInput(e.target.value)
@@ -55,7 +72,7 @@ function Posts({initialPosts = []}){
             </form>
 
             {
-                posts.map(post => {
+                getShowablePosts(posts).map(post => {
                     return <Post post={post} key={`post-${post.id}`}/>
                 })
             }

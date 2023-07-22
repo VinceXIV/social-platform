@@ -7,7 +7,7 @@ const localStorageData = JSON.parse(localStorage.getItem('data') || null) || {}
 const initialState = {
   loggedIn: localStorageData['loggedIn'] || false,
   userDetails: localStorageData['userDetails'] || {},
-  userType: localStorageData['userType'] || 'regular', // User can be regular or premium
+  userType: localStorageData['userType'] || 'premium', // User can be regular or premium
   following: localStorageData['following'] || [], // Will hold the an array of ids that the user is following
   blocked: localStorageData['blocked'] || []
 }
@@ -29,7 +29,6 @@ export const counterSlice = createSlice({
       localStorage.clear()
       state.loggedIn = false
       state.userDetails = {}
-      state.userType = 'regular'  
     },
 
     updateUserDetails: (state, userData) => {
