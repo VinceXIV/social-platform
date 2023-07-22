@@ -4,6 +4,10 @@
     margin: auto;
 }
 
+.login-component.mobile {
+    width: 80vw;
+}
+
 .login-form {
     display: flex;
     flex-direction: column;

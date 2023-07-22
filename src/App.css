@@ -11,12 +11,11 @@
 }
 
 .page {
-    min-height: calc(100vh - var(--navbar-height));
+    min-height: 100vh;
     padding: 1vw 2vw;
     position: relative;
     padding-top: calc(var(--navbar-height) + 1rem);
     background-color: #f7f7ff;
-
 }
 
 .container {

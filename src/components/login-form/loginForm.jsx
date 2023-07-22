@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 function LoginForm(){
     const [formData, setFormData] = useState({username: '', password: ''})
+    const view = useSelector(state => state.view.view)
     const dispatch = useDispatch()
 
     async function handleFormSubmit(e){
@@ -65,7 +66,7 @@ function LoginForm(){
     }
 
     return (
-        <div className="component login-component">
+        <div className={`component login-component ${view === 'mobile'? 'mobile': 'desktop'}`}>
             <form className="login-form" onSubmit={handleFormSubmit}>
                 <div className="input-container">
                     <label htmlFor="username">Username</label>
