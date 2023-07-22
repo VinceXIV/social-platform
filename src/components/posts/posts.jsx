@@ -28,7 +28,13 @@ function Posts({initialPosts = []}){
         dispatch(setPosts(sortedPosts))
     }, [searchInput])
 
-    function getShowablePosts(posts){
+    function randomize(posts){
+        return posts.sort((a, b) => {
+            return Math.random() - Math.random()
+        })
+    }
+
+    function getShowable(posts){
         // Return only posts that are not blocked or the people who
         // created the post are not blocked
         return posts.filter(post => {
@@ -66,7 +72,7 @@ function Posts({initialPosts = []}){
             </form>
 
             {
-                getShowablePosts(posts).map(post => {
+                randomize(getShowable(posts)).map(post => {
                     return <Post post={post} key={`post-${post.id}`}/>
                 })
             }
