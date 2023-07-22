@@ -57,6 +57,7 @@
     flex-direction: column;
     gap: 0.5rem;
     margin: 3vw 0;
+    border-left: solid 0.1rem rgba(0, 0, 0, 0.5);
 }
 
 #component-post .comment {
