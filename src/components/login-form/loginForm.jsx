@@ -11,7 +11,7 @@ function LoginForm(){
     const view = useSelector(state => state.view.view)
     const dispatch = useDispatch()
 
-    async function handleFormSubmit(e){
+    function handleFormSubmit(e){
         e.preventDefault()
 
         // Go to the next login stage. In this case move from
@@ -22,26 +22,31 @@ function LoginForm(){
         // The zipcode is used for password here
         const endpoint = `users?username=${formData.username}&zipcode=${formData.password}`
 
-        const res = await fetch(`${apiHost}/${endpoint}`)
-        if(res.ok){
-            // This will return more details about the user who has just logged in
-            // the data will be an array with one object corresponding to the user inside it
-            const user = await res.json().then(data => data)
+        fetch(`${apiHost}/${endpoint}`)
+        .then(res => {
 
-            // If there exists user with the username and password submitted
-            if(!!user.length){
-                if(user[0].address.zipcode === formData.password){
-                    // Go to the next stage of the request. In this case
-                    // Move from "processing" to "completed"
-                    dispatch(goToNextStage('login'))
+            if(res.ok){
+                // This will return more details about the user who has just logged in
+                // the data will be an array with one object corresponding to the user inside it
+                res.json().then(user => {
+                    // If there exists user with the username and password submitted
+                    if(!!user.length){
+                        if(user[0].address.zipcode === formData.password){
+                            // Go to the next stage of the request. In this case
+                            // Move from "processing" to "completed"
+                            dispatch(goToNextStage('login'))
+            
+                            // Also save the details of the user who has logged in
+                            dispatch(login(user[0]))
+                        }
+                    }
+                })
     
-                    // Also save the details of the user who has logged in
-                    dispatch(login(user[0]))
-                }
+            }else {
+                res.json().then(error => console.warn(error))
             }
-        }else {
-            res.json().then(error => console.warn(error))
         }
+        )
     }
 
     // Update the form data when the user changes
