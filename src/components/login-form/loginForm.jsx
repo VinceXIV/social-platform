@@ -29,7 +29,6 @@ function LoginForm(){
 
             // If there exists user with the username and password submitted
             if(!!user.length){
-                console.log(user[0])
                 if(user[0].address.zipcode === formData.password){
                     // Go to the next stage of the request. In this case
                     // Move from "processing" to "completed"

@@ -22,16 +22,11 @@ function Posts({initialPosts = []}){
         // Also, I am only searching for similarity in the post title
         const modifiedPosts = [...posts]
         const sortedPosts = modifiedPosts.sort((a, b)=> {
-            console.log(a.body)
             return cosine.similarity(a.title, searchInput) < cosine.similarity(b.title, searchInput)
         })
 
         dispatch(setPosts(sortedPosts))
     }, [searchInput])
-
-    console.log("blocked users: ", blockedUsers)
-    console.log("blocked posts: ", blockedPosts)
-
 
     function getShowablePosts(posts){
         // Return only posts that are not blocked or the people who
@@ -39,7 +34,6 @@ function Posts({initialPosts = []}){
         return posts.filter(post => {
             const postIsNotBlocked = !blockedPosts.find(blockedPostId => blockedPostId === post.id)
             const userIsNotBlocked = !blockedUsers.find(blockedUserId => blockedUserId === post.userId)
-            console.log(postIsNotBlocked, userIsNotBlocked)
             return postIsNotBlocked && userIsNotBlocked
         })
     }
