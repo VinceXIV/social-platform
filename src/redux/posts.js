@@ -26,7 +26,8 @@ const initialState = {
     posts: posts, // These are posts by the users of the social app
     viewed: [], // Will contain a list of posts for which the user has viewed
     liked: [],
-    unliked: []
+    unliked: [], // Holds a list of posts that were previously liked but not any more
+    blocked: []
 }
 
 export const counterSlice = createSlice({
@@ -45,6 +46,10 @@ export const counterSlice = createSlice({
 
     deletePost: (state, data) => {
         state.posts = state.posts.filter(post => post.id !== data.payload.id)
+    },
+
+    block: (state, postId) => {
+        state.blocked.push(postId.payload)
     },
 
     updatePost: (state, data) => {
