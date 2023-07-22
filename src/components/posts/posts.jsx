@@ -57,12 +57,14 @@ function Posts({data}){
 
             <form onSubmit={searchPost}>
                 <label htmlFor="search">Search Post</label>
+                <div className="width-n-input">
                     <input name='search' 
                         value={searchInput}
                         onChange={handleSearchInputChange}
                         placeholder="Search terms are compared with the post titles"
                     />
                 <Button text="submit" action={searchPost} />
+                </div>
             </form>
 
             <div className="posts">
