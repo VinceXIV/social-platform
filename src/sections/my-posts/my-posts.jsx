@@ -10,7 +10,7 @@ function MyPosts(){
 
     return (
         <div id="section-my-posts" className="section content">
-            <Posts posts={myPosts}/>
+            <Posts data={myPosts}/>
         </div>
     )
 }
