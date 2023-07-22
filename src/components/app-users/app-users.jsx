@@ -54,7 +54,7 @@ function FollowingUsers(){
                         <div key={`app-user-${user.id}`}
                             className={`user-details ${isBlocked(user.id)? 'blocked': ''}`}>
 
-                            <p onClick={()=>handleUserClick(user.id)} >{user.name}</p>
+                            <p className="user-name" onClick={()=>handleUserClick(user.id)} >{user.name}</p>
 
                             <div>
                                 {

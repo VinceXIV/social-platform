@@ -43,7 +43,11 @@ ul li {
     padding-bottom: 10vw;
 }
 
-@media  screen and(max-width: 50rem) {
+.sidebar {
+    background-color: red;
+}
+
+@media only screen and (max-width: 50rem) {
     .sidebar {
         display: none;
     }

@@ -2,6 +2,8 @@
     background-color: green;
     width: 30%;
     height: calc(90vh - var(--navbar-height));
+    overflow-y: auto;
+    
     padding: 1rem;
 
     position: sticky;

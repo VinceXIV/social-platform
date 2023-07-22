@@ -1,8 +1,14 @@
 .app-users .user-details {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0.3rem 0;
 }
 
 .app-users .user-details.blocked {
     opacity: 0.7;
+}
+
+.app-users .user-name {
+    width: 50%;
 }
