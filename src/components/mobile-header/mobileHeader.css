@@ -1,0 +1,79 @@
+#component-mobile-header .wrapper{
+    max-width:800px;
+    width:100%;
+    margin:0 auto;
+    text-align:center;
+  }
+  
+  #component-mobile-header button {
+    width:45px;
+    background:transparent;
+    border:none;
+    height:35px;
+    padding:0px;
+    overflow:hidden;
+  }
+  
+  #component-mobile-header button:focus{
+    outline:none;
+  }
+  
+  #component-mobile-header .effect1 span{
+    display:inline-block;
+    width:80%;
+    height:3px;
+    background:#000;
+    position:relative;
+    transition:all .2s;
+  }
+  
+  #component-mobile-header .effect1 span:before,
+  #component-mobile-header .effect1 span:after{
+    content:'';
+    position:absolute;
+    width:100%;
+    background:#000;
+    height:3px;
+    left:0px;
+    transition:all .3s;
+  }
+  
+  #component-mobile-header .effect1 span:before{
+    top:10px;
+  }
+  
+  #component-mobile-header .effect1 span:after{
+    bottom:10px;
+  }
+  
+  #component-mobile-header button.effect1:hover span:after{
+    left:-5px;
+  }
+  
+  #component-mobile-header button.effect1:hover span:before{
+    left:5px;
+  }
+  
+  #component-mobile-header button.effect1 span.active{
+    background:transparent;
+  }
+  
+  #component-mobile-header button.effect1 span.active:after,
+  #component-mobile-header button.effect1 span.active:before{
+    top: 0px;
+    left: 0px;
+  }
+  
+  #component-mobile-header button.effect1 span.active:after{
+    transform:rotate(-45deg);
+    -webkit-transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg);
+  }
+  
+  #component-mobile-header button.effect1 span.active:before{
+    transform:rotate(45deg);
+    -webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+  }
