@@ -11,7 +11,7 @@ import { showPaywall } from "../../redux/paywall";
 import Button from "../../elements/button/button";
 
 function Post({post}){
-    const [postState, setPostState] = useState({comments: [], hidden: true})
+    const [postState, setPostState] = useState({comments: [], hidden: true, blocking: false})
     const viewedPosts = useSelector(state => state.posts.viewed)
     const likedPosts = useSelector(state => state.posts.liked)
     const paywalled = useSelector(state => state.paywall.paywalled)
@@ -81,14 +81,26 @@ function Post({post}){
         }
     }
 
+    function handleBlockClick(){
+        setPostState(postState => ({...postState, blocking: true}))
+    }
+
     return (
-        <div ref={postRef} id="component-post" className="component" >
+        <div ref={postRef} id="component-post" className={`component ${postState.blocking? 'blocking': ''}`} >
+            <div className={`${postState.blocking? 'block-confirm': 'display-none'}`}>
+                <h1>You are about to block this post</h1>
+
+                <div>
+                    <Button text="Confirm"/>
+                    <Button text="Cancel" />
+                </div>
+            </div>
 
             <h2 className="post-title">
                 {post.title}
                 <ul className="header-buttons">
                     <li><Button text={postState.hidden? 'view': 'hide'} action={()=>handlePostClick(post.id)} /></li>
-                    <li><Button text="Block" action={()=>dispatch(block(post.id))} /></li>
+                    <li><Button text="Block" action={handleBlockClick} /></li>
                 </ul>
             </h2>
 

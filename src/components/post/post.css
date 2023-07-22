@@ -3,6 +3,25 @@
     padding: 0.5rem 0;
     cursor: pointer;
     padding: 1rem;
+    border-radius: 1rem;
+}
+
+#component-post .block-confirm {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#component-post .block-confirm h1 {
+    color: crimson;
+
+}
+
+#component-post.blocking {
+    outline: solid 0.1rem crimson;
 }
 
 #component-post.paywalled {
