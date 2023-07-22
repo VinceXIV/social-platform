@@ -19,6 +19,49 @@
     padding:0px;
     overflow:hidden;
   }
+
+  #component-mobile-header .actions-container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    background-color: rgb(245, 245, 220, 0.5);
+    backdrop-filter: blur(0.2rem);
+    left: 0;
+    top: calc(var(--navbar-height));
+  }
+
+  #component-mobile-header .actions {
+    top: calc(0.5*var(--navbar-height));
+    border-radius: 0.5rem;
+    position: relative;
+    width: 60vw;
+    height: 75vh;
+    margin: auto;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  #component-mobile-header .action {
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+
+  #component-mobile-header .action:hover {
+    background-color: aquamarine;
+  }
   
   #component-mobile-header button.effect1:focus{
     outline:none;

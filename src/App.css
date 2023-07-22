@@ -47,6 +47,10 @@ ul li {
     background-color: red;
 }
 
+.display-none {
+    display: none;
+}
+
 /* STYLING THE SCROLL BAR */
 /* https://www.digitalocean.com/community/tutorials/css-scrollbars */
 
