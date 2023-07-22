@@ -6,9 +6,11 @@ import MobileHeader from "../../components/mobile-header/mobileHeader";
 function Header(){
     const view = useSelector(state => state.view.view)
 
-    const actions = {
-        
-    }
+    const actions = [
+        {name: 'Following', path: '/home/following'},
+        {name: 'My Posts', path: '/home/my-posts'},
+        {name: 'Feed', path: '/home/feed'}
+    ]
 
     return (
         <div id="section-header">
@@ -16,7 +18,7 @@ function Header(){
                 <h1>Socially</h1>
 
                 {
-                    view === 'desktop' ? <DesktopHeader /> : <MobileHeader />
+                    view === 'desktop' ? <DesktopHeader actions={actions} /> : <MobileHeader />
                 }
             </div>
         </div>
