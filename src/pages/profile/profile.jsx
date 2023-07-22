@@ -8,17 +8,14 @@ import "./profile.css"
 function Profile(){
     const location = useLocation()
     // const [userDetails, setUserDetails] = useState([])
-    let userDetails = location.pathname === '/profile' ? useSelector(state => state.user.userDetails) : []
+    let userDetails = [] 
 
-    // If we reached here not by the /profile path, it means we got
-    // here by the /users/:id/profile path that is used when we want
-    // to view the profile of other users. In this case show the content
-    // of those users
-    if(location.pathname !== '/profile'){
-        const [,,userId] = location.pathname.split("/")
-        const details = useGet(`${apiHost}/users/${userId}`)
-        userDetails = details
-    }
+    // The path to get to this page is in the form users/:id/profile
+    // we extract that id and fetch the details related to that id
+    // which is then rendered
+    const [,,userId] = location.pathname.split("/")
+    const details = useGet(`${apiHost}/users/${userId}`)
+    userDetails = details
 
     // userDetails is an object, which is also nested in certain instances.
     // In this function, I convert the nested object into a nested array
