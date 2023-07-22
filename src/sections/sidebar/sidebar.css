@@ -2,7 +2,6 @@
     background-color: green;
     width: 30%;
     height: calc(90vh - var(--navbar-height));
-    overflow-y: auto;
     
     padding: 1rem;
 
@@ -11,4 +10,10 @@
 
     background-color: beige;
     border-radius: 0.5rem;
+}
+
+.sidebar .scroll {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
 }

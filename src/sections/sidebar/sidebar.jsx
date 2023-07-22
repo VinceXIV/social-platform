@@ -21,7 +21,9 @@ function Sidebar(){
 
     return (
         <div className="sidebar">
-            {getComponent()}
+            <div className="scroll">
+                {getComponent()}
+            </div>
         </div>
     )
 }
