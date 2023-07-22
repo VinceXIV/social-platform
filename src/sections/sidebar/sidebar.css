@@ -1,6 +1,6 @@
 .sidebar {
     background-color: green;
-    width: 30%;
+    width: 35%;
     height: calc(90vh - var(--navbar-height));
     
     padding: 1rem;

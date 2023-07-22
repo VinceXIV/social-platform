@@ -2,13 +2,24 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding: 0.3rem 0;
+    padding: 0.2rem 0;
 }
 
 .app-users .user-details.blocked {
-    opacity: 0.7;
+    opacity: 0.5;
 }
 
 .app-users .user-name {
-    width: 50%;
+    width: 45%;
+}
+
+.app-users .user-details {
+    cursor: pointer;
+    align-items: center;
+    padding: 0.3rem;
+    border-radius: 0.5rem;
+}
+
+.app-users .user-details:hover {
+    background-color: bisque;
 }
