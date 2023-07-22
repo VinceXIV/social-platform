@@ -11,6 +11,13 @@
 
 #component-post .post-title {
     font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+#component-post .header-buttons {
+    display: flex;
 }
 
 #component-post .comment-title {

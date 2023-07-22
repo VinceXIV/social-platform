@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { makeViewed, makeLiked, makeUnliked } from "../../redux/posts";
 import { showPaywall } from "../../redux/paywall";
+import Button from "../../elements/button/button";
 
 function Post({post}){
     const [comments, setComments] = useState([]) // By default, don't show the comments
@@ -92,9 +93,14 @@ function Post({post}){
     }
 
     return (
-        <div ref={postRef} id="component-post" className="component" onClick={()=>handlePostClick(post.id)}>
-            <h2 className="post-title">{post.title}</h2>
-
+        <div ref={postRef} id="component-post" className="component" >
+            <h2 className="post-title">
+                {post.title}
+                <ul className="header-buttons">
+                    <li><Button text="view" action={()=>handlePostClick(post.id)} /></li>
+                    <li><Button text="Block" /></li>
+                </ul>
+            </h2>
             <div className="body display-none">
 
                 <p>{post.body}</p>

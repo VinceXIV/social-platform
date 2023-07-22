@@ -11,6 +11,8 @@ let posts = []
 if(res.ok){
     const results = await res.json().then(data => data)
 
+    // Add some random number of likes and views
+    // for each post
     posts = results.map(p => {
         return {
             ...p,
@@ -18,6 +20,10 @@ if(res.ok){
             views: Math.floor(Math.random()*5000)
         }
     })
+    // Randomize the posts afterwards. That's because the posts
+    // by default come are sorted by users so all posts of user 1
+    // are shown before user 2, before user 3 ...
+    .sort(()=> Math.random() - Math.random())
 }
 
 // We use the posts we got above to set it as the
