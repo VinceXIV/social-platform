@@ -103,20 +103,20 @@ function Post({post}){
                     <li className="activity-item" onClick={handleLikeClick}>
                         {
                             likedPosts.find(lId => lId === post.id)? 
-                                <i class="fa-solid fa-heart"></i>
+                                <i className="fa-solid fa-heart"></i>
                             :
-                            <i class="fa-regular fa-heart"></i>
+                            <i className="fa-regular fa-heart"></i>
                         }
                         {post.likes} likes
                     </li>
 
                     <li className="activity-item">
-                        <i class="fa-regular fa-eye"></i>
+                        <i className="fa-regular fa-eye"></i>
                         <p>{post.views} views</p>
                     </li>
 
                     <li className="activity-item" onClick={toggleShowComments}>
-                        <i class="fa-regular fa-comment"></i>
+                        <i className="fa-regular fa-comment"></i>
                         <p>{comments.length} comments</p>                        
                     </li>
                 </ul>
