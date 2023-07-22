@@ -7,11 +7,13 @@ import { useLocation } from "react-router-dom";
 function Header(){
     const view = useSelector(state => state.view.view)
     const location = useLocation()
+    const userDetails = useSelector(state => state.user.userDetails)
 
     const actions = [
         {name: 'Following', path: '/home/following'},
         {name: 'My Posts', path: '/home/my-posts'},
-        {name: 'Feed', path: '/home/feed'}
+        {name: 'Feed', path: '/home/feed'},
+        {name: userDetails.name, path: `/users/${userDetails.id}/profile`}
     ]
 
     function getActiveState(expectedPathName){
