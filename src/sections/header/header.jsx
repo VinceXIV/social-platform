@@ -6,6 +6,10 @@ import MobileHeader from "../../components/mobile-header/mobileHeader";
 function Header(){
     const view = useSelector(state => state.view.view)
 
+    const actions = {
+        
+    }
+
     return (
         <div id="section-header">
             <div className="container">

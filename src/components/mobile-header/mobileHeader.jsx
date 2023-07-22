@@ -1,9 +1,11 @@
 import { useRef } from "react";
 import { useEffect } from "react";
 import "./mobileHeader.css"
-
+import Button from "../../elements/button/button";
+import { useNavigate } from "react-router-dom";
 function MobileHeader(){
     const headerRef = useRef()
+    const navigate = useNavigate()
 
     useEffect(()=>{ 
 
@@ -24,9 +26,10 @@ function MobileHeader(){
 
     return (
         <div id="component-mobile-header">
+            <Button text="Login" action={()=> navigate('login')}/>
             <div ref={headerRef} className="wrapper">
                 <button className="effect1">
-                <span></span>
+                    <span></span>
                 </button>
             </div>
         </div>

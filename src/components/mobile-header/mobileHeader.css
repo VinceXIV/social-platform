@@ -1,3 +1,9 @@
+#component-mobile-header {
+    display: flex;
+    width: 10rem;
+    gap: 1rem;
+}
+
 #component-mobile-header .wrapper{
     max-width:800px;
     width:100%;
@@ -5,16 +11,16 @@
     text-align:center;
   }
   
-  #component-mobile-header button {
-    width:45px;
+  #component-mobile-header button.effect1 {
+    width: 3rem;
     background:transparent;
     border:none;
-    height:35px;
+    height:2.5rem;
     padding:0px;
     overflow:hidden;
   }
   
-  #component-mobile-header button:focus{
+  #component-mobile-header button.effect1:focus{
     outline:none;
   }
   
@@ -46,32 +52,32 @@
     bottom:10px;
   }
   
-  #component-mobile-header button.effect1:hover span:after{
+  #component-mobile-header button.effect1.effect1:hover span:after{
     left:-5px;
   }
   
-  #component-mobile-header button.effect1:hover span:before{
+  #component-mobile-header button.effect1.effect1:hover span:before{
     left:5px;
   }
   
-  #component-mobile-header button.effect1 span.active{
+  #component-mobile-header button.effect1.effect1 span.active{
     background:transparent;
   }
   
-  #component-mobile-header button.effect1 span.active:after,
-  #component-mobile-header button.effect1 span.active:before{
+  #component-mobile-header button.effect1.effect1 span.active:after,
+  #component-mobile-header button.effect1.effect1 span.active:before{
     top: 0px;
     left: 0px;
   }
   
-  #component-mobile-header button.effect1 span.active:after{
+  #component-mobile-header button.effect1.effect1 span.active:after{
     transform:rotate(-45deg);
     -webkit-transform:rotate(-45deg);
     -moz-transform:rotate(-45deg);
     -ms-transform:rotate(-45deg);
   }
   
-  #component-mobile-header button.effect1 span.active:before{
+  #component-mobile-header button.effect1.effect1 span.active:before{
     transform:rotate(45deg);
     -webkit-transform:rotate(45deg);
     -moz-transform:rotate(45deg);
