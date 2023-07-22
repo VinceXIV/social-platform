@@ -65,11 +65,14 @@ function Posts({initialPosts = []}){
                 <Button text="submit" action={searchPost} />
             </form>
 
-            {
-                getShowable(posts).map(post => {
-                    return <Post post={post} key={`post-${post.id}`}/>
-                })
-            }
+            <div className="posts">
+                {
+                    getShowable(posts).map(post => {
+                        return <Post post={post} key={`post-${post.id}`}/>
+                    })
+                }
+            </div>
+
         </div>
     )
 }

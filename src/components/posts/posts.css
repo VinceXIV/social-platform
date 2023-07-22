@@ -22,3 +22,9 @@
 #section-posts form {
     font-weight: bold;
 }
+
+#section-posts .posts {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
