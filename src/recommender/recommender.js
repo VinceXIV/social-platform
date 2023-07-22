@@ -1,19 +1,35 @@
 
-// Here, I am implementing a simple recommendation engine using the 
+// Here, I am implementing a simple recommendation using the 
 // Naive Bayes Algorithm. 
 // This function expects the viewedPostIds, and likedPostIds to be
 // arrays of ids of posts the user viewed or liked, respectively
 // allPosts, on the other hand, is an array of objects which
 // are in the form {title: "the quick brown fox", body: "blah blah blah"}
-function getRecommendation(viewedPostIds, likedPostIds, allPosts){   
+function getRecommendation(viewedPostIds, likedPostIds, allPosts){  
+    // Viewed posts but not liked
+    const unlikedPostIds = viewedPostIds.filter(viewedPostId => {
+        for(const likedPostId of likedPostIds){
+            if(likedPostId === viewedPostId){
+                return false
+            }
+        }
+
+        return true
+    })
+    
     // Probability of liking a post
     const pLiking = likedPostIds.length / viewedPostIds.length
+
+    // Probability of viewing but not liking
+    const pUnliking = 1 - pLiking
 
     // Get the probability of a word being part of a post the user liked
     // e.g, it may return something like {'the': 0.1, 'is': 0.03}, which
     // shows that the probability that the word 'the' being in a post they
     // liked was 0.1
-    let likedPostWords = getWords(getPosts(likedPostIds, allPosts))
+    const likedPostWords = getWords(getPosts(likedPostIds, allPosts))
+
+    const unlikedPostWords = getWords(getPosts(unlikedPostIds, allPosts))
 
     // These are the posts the user hasn't viewed yet. We want to return them
     // in a sorted way with the first on the list being the one highest on
@@ -27,16 +43,23 @@ function getRecommendation(viewedPostIds, likedPostIds, allPosts){
         return true
     })
 
-    return unviewedPosts
-
     // Sort the unviewed posts in the order a user would likely like to 
     // view them
-    // return unviewedPost.sort((a, b) => {
-    //     const probabilityOfLikingA  = pLikingWords(pLiking, likedPostWords, getWords(a))
-    //     const probabilityOfLikingB = pLikingWords(pLiking, likedPostWords, getWords(b))
+    return unviewedPosts.sort((a, b) => {
+        const probabilityOfLikingA  = pLikingWords(pLiking, likedPostWords, getWords([a]))
+        const probabilityOfUnLikingA  = pLikingWords(pLiking, unlikedPostWords, getWords([a]))
+        const probabilityOfLikingB = pLikingWords(pLiking, likedPostWords, getWords([b]))
+        const probabilityOfUnLikingB = pLikingWords(pLiking, unlikedPostWords, getWords([b]))
 
-    //     return probabilityOfLikingA > probabilityOfLikingB
-    // })
+        const likeUnlikeA =  probabilityOfLikingA/probabilityOfUnLikingA
+        const likeUnlikeB =  probabilityOfLikingB/probabilityOfUnLikingB
+
+        console.log(likeUnlikeA, likeUnlikeB)
+
+        // The relative probability of liking a over simply viewing the post and nothing
+        // is greater than that of b
+        return likeUnlikeB - likeUnlikeA
+    })
 }
 
 // Returns the probability of liking the post given the words it has
@@ -44,16 +67,17 @@ function getRecommendation(viewedPostIds, likedPostIds, allPosts){
 // of Words being in a post at all because we will be deviding by the same 
 // value for all values. Since we care more about ranking which post is
 // preferred than we care about the actual exact probability, we will
-// only use the numerator values. As such, the probability given here
-// is directly proportional to the actual probability we would have obtained
-// if we went all the way using the rules
+// only use the numerator values. That is because we will be doing 
+// probabilityOfLiking/probabilityOfUnliking that will make the denominator
+// not matter. Also, it will be the same value for both the probabilities
+// so they will cancel out
 // Please note that I have made a few assumptions including the one that
 // the probability of one word in a sentence occuring given another is the
 // same as the probability of the word occuring at all (i.e, independence)
 // This might make sense given the posts aren't actual sentences from people 
 // making post
 function pLikingWords(pLiking, wordArray, postWords){
-    const probability = pLiking
+    let probability = pLiking
     for(const word of postWords){
         probability *= pWordLiking(word, wordArray)
     }
@@ -114,19 +138,29 @@ function pWordLiking(targetWord, wordArray, alpha=1){
     return (targetWordCount + alpha) / (wordArray.length + (alpha * wordArray.length))
 }
 
+
+// EXAMPLE
+
 const allPosts = [
     {id: 1, title: "brown fox"},
     {id: 2, title: "the the the quick is haah"}, 
-    {id: 3, title: "this fox is awesome"},
+    {id: 3, title: "love is a beautiful thing"},
     {id: 4, title: "I love lasagna"},
     {id: 5, title: "the fox is cool"},
     {id: 6, title: "and now the end is near"},
-    {id: 7, title: "love is a beautiful thing"}
+    {id: 7, title: "this fox is awesome"}
 ]
 
-const likedPosts = [1, 5]
-const viewedPosts = [1, 2, 5]
+const likedPostIds = [1, 5]
+const viewedPostIds = [1, 2, 5]
 
-const x = pWordLiking("what", "this is awesome the".split(" "))
-
-console.log(getRecommendation(viewedPosts, likedPosts, allPosts))
+// We see that that the result given the above example is.
+// This is just what we expect since the liked posts both contain
+// the word fox
+// [
+//     { id: 7, title: 'this fox is awesome' },
+//     { id: 3, title: 'love is a beautiful thing' },
+//     { id: 4, title: 'I love lasagna' },
+//     { id: 6, title: 'and now the end is near' }
+// ]
+console.log(getRecommendation(viewedPostIds, likedPostIds, allPosts))
