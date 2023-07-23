@@ -20,7 +20,7 @@ function LoginForm(){
 
 
         // The zipcode is used for password here
-        const endpoint = `users?username=${formData.username}&zipcode=${formData.password}`
+        const endpoint = `users?username=${formData.username}`
 
         fetch(`${apiHost}/${endpoint}`)
         .then(res => {
