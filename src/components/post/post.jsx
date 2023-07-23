@@ -11,7 +11,7 @@ import { showPaywall } from "../../redux/paywall";
 import Button from "../../elements/button/button";
 
 function Post({post}){
-    const [postState, setPostState] = useState({comments: [], hidden: true, blocking: false})
+    const [postState, setPostState] = useState({comments: [], userDetails: {}, hidden: true, blocking: false})
     const viewedPosts = useSelector(state => state.posts.viewed)
     const likedPosts = useSelector(state => state.posts.liked)
     const paywalled = useSelector(state => state.paywall.paywalled)
@@ -29,6 +29,20 @@ function Post({post}){
                 res.json().then(data => {
                     setPostState(postState => ({...postState, comments: data}))
                 })
+            }else{
+                res.json().then(error => console.warn(error))
+            }
+        })
+
+        // Get the details of the user who made this post
+        fetch(`${apiHost}/users/${post.userId}`)
+        .then(res => {
+            if(res.ok){
+                res.json().then(data => {
+                    setPostState(postState => ({...postState, userDetails: data[0]}))
+                })
+            }else{
+                res.json().then(error => console.warn(error))
             }
         })
 
@@ -111,24 +125,24 @@ function Post({post}){
 
             {/* This is the whole of the post that would normally be rendered */}
             <div className="post-content">
-                <h2 className="post-title">
-                    {post.title}
-                    <ul className="header-buttons">
-                        <li>
-                            <Button text={postState.hidden? 'open': 'close'} action={()=>handlePostClick(post.id)} />
-                        </li>
+                    <div className="post-title">
+                        <h1>{post.title}</h1>
+                        <ul className="header-buttons">
+                            <li>
+                                <Button text={postState.hidden? 'open': 'close'} action={()=>handlePostClick(post.id)} />
+                            </li>
 
-                        {
-                            // Don't show this button when we are currently on the of 
-                            // blocking the post. There's a "Confirm" button already
-                            !postState.blocking ?
-                                <li className={loggedIn? '': 'display-none'}>
-                                    <Button text="Block" action={handleBlockClick} />
-                                </li>
-                            : ''
-                        }
-                    </ul>
-                </h2>
+                            {
+                                // Don't show this button when we are currently on the of 
+                                // blocking the post. There's a "Confirm" button already
+                                !postState.blocking ?
+                                    <li className={loggedIn? '': 'display-none'}>
+                                        <Button text="Block" action={handleBlockClick} />
+                                    </li>
+                                : ''
+                            }
+                        </ul>
+                    </div>
 
                 <div className={`body ${postState.hidden? 'display-none': ''}`}>
 

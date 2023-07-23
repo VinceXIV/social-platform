@@ -17,7 +17,6 @@
 
 #component-post .block-confirm h1 {
     color: crimson;
-
 }
 
 #component-post.blocking {
@@ -38,10 +37,13 @@
 }
 
 #component-post .post-title {
-    font-size: 1.2rem;
     display: flex;
     align-items: center;
     gap: 2rem;
+}
+
+#component-post .post-title h1 {
+    font-size: 1.2rem;
 }
 
 #component-post .header-buttons {
