@@ -68,8 +68,10 @@ function Post({post}){
             // reopening one of the posts they have already viewed
             if(userType === 'premium' || viewedPosts.find(p => p === postId)){  
                 setPostState(postState => ({...postState, hidden: false}))
-            }else { // Else they should pay
+            }else if(loggedIn) { // Else they should pay
                 dispatch(showPaywall([`You have reached today's limit of ${regularUserLimit} posts.`, "Join premium to view more"]))
+            }else {
+                alert('log in to view more posts')
             }
         }else {
             setPostState(postState => ({...postState, hidden: false}))
