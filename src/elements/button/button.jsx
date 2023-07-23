@@ -1,8 +1,8 @@
 import "./button.css"
 
-function Button({text, action, outline='#f7f7ff'}){
+function Button({text, action}){
     return (
-        <button onClick={action} style={{outline: outline}}>
+        <button onClick={action}>
             {text}
         </button>
     )

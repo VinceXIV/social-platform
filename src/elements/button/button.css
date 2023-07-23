@@ -1,6 +1,7 @@
 button {
     cursor: pointer;
     outline: none;
+    border: solid 0.1rem #f7f7ff;
     background-color:aquamarine;
     padding: 0.5rem 1rem;
     margin: 0.1rem;
