@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../../elements/button/button";
-import getRecommendations from "../../recommender/recommender";
+import getRecommendations from "../../recommender/naiveBayes";
 import "./recommended.css"
 import { setPosts } from "../../redux/posts";
 
