@@ -80,6 +80,10 @@
     cursor: pointer;
 }
 
+#paywall form.payment-btn {
+    background-color: transparent;
+}
+
 #paywall .close-paywall:hover {
     opacity: 0.7;
 }

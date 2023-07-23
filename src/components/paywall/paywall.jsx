@@ -15,7 +15,7 @@ function Paywall(){
         <div id="paywall" onClick={()=>dispatch(unshowPaywall())}>
             <div className={`paywall-content ${view}`}>
                 <div className="close-paywall">
-                    <i class="fa-solid fa-xmark"></i>
+                    <i className="fa-solid fa-xmark"></i>
                 </div>
                 <h1>Join Premium</h1>
                 <div className="paywall-details">
@@ -41,7 +41,14 @@ function Paywall(){
                             <span className="amount">$8 </span>
                             <span className="amount-info">(33% off)</span>
                         </p>
-                        <Button text='Subscribe' action={handlePaymentClick} />
+                        
+                        {/* Paypal button */}
+                        <form className="payment-btn" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                            <input type="hidden" name="cmd" value="_s-xclick" />
+                            <input type="hidden" name="hosted_button_id" value="HZ848SWY8TYXW" />
+                            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" />
+                            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+                        </form>
                     </div>
                 </div>
             </div>
