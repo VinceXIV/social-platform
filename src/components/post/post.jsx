@@ -15,6 +15,7 @@ function Post({post}){
     const viewedPosts = useSelector(state => state.posts.viewed)
     const likedPosts = useSelector(state => state.posts.liked)
     const paywalled = useSelector(state => state.paywall.paywalled)
+    const view = useSelector(state => state.view.view)
     const { userType, loggedIn } = useSelector(state => state.user)
     const postRef = useRef()
     const dispatch = useDispatch()
@@ -157,17 +158,17 @@ function Post({post}){
                                 :
                                 <i className="fa-regular fa-heart"></i>
                             }
-                            {post.likes || 0} likes
+                            {post.likes || 0} {view === 'mobile'? '': 'likes'}
                         </li>
 
                         <li className="activity-item">
                             <i className="fa-regular fa-eye"></i>
-                            <p>{post.views || 1} views</p>
+                            <p>{post.views || 1} {view === 'mobile'? '': 'views'}</p>
                         </li>
 
                         <li className="activity-item" onClick={toggleShowComments}>
                             <i className="fa-regular fa-comment"></i>
-                            <p>{postState.comments.length} comments</p>                        
+                            <p>{postState.comments.length} {view === 'mobile'? '': 'comments'}</p>                        
                         </li>
                     </ul>
                     
