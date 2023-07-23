@@ -63,7 +63,7 @@ function Post({post}){
     function handlePostClick(postId){
         if(!postState.hidden){
             setPostState(postState => ({...postState, hidden: true}))
-        }else if(viewedPosts.length > regularUserLimit){
+        }else if(viewedPosts.length >= regularUserLimit){
             // If they are a premium user, or this post is simply them 
             // reopening one of the posts they have already viewed
             if(userType === 'premium' || viewedPosts.find(p => p === postId)){  
