@@ -14,6 +14,9 @@ function Paywall(){
     return (
         <div id="paywall" onClick={()=>dispatch(unshowPaywall())}>
             <div className={`paywall-content ${view}`}>
+                <div className="close-paywall">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
                 <h1>Join Premium</h1>
                 <div className="paywall-details">
                     {
