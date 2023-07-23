@@ -33,7 +33,7 @@ function Posts(){
         // Also, I am only searching for similarity in the post title
         const modifiedPosts = [...posts]
         const sortedPosts = modifiedPosts.sort((a, b)=> {
-            return cosine.similarity(a.title, searchInput) < cosine.similarity(b.title, searchInput)
+            return cosine.similarity(b.title, searchInput) - cosine.similarity(a.title, searchInput)
         })
 
         dispatch(updatePosts(sortedPosts))        
