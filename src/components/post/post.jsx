@@ -155,6 +155,7 @@ function Post({post}){
 
                     <p>{post.body}</p>
 
+                    {/* Post activity. E.g it had 20 likes, 30 views, etc */}
                     <ul className="activity" onClick={handleActivityClick}>
                         <li className="activity-item" onClick={handleLikeClick}>
                             {
@@ -168,6 +169,9 @@ function Post({post}){
 
                         <li className="activity-item">
                             <i className="fa-regular fa-eye"></i>
+                            
+                            {/* Don't show the name of post activity on mobile. For instance in stead
+                                of mentioning "30 likes", just do "30" plus, of course, the icon*/}
                             <p>{post.views || 1} {view === 'mobile'? '': 'views'}</p>
                         </li>
 
@@ -179,6 +183,7 @@ function Post({post}){
                     
                     <div id={`post-${post.id}-comments`} className="comments display-none" onClick={toggleShowComments}>
                         {
+                            // The comments for particular post
                             postState.comments.map(comment => {
                                 return (
                                     <div key={`post-${post.id}-comment-${comment.id}`} className="comment" >
