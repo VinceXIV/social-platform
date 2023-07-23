@@ -5,124 +5,135 @@
 }
 
 #component-mobile-header .wrapper{
-    max-width:800px;
-    width:100%;
-    margin:0 auto;
-    text-align:center;
-  }
-  
-  #component-mobile-header button.effect1 {
-    width: 3rem;
-    background:transparent;
-    border:none;
-    height:2.5rem;
-    padding:0px;
-    overflow:hidden;
-  }
+  max-width:800px;
+  width:100%;
+  margin:0 auto;
+  text-align:center;
+}
 
-  #component-mobile-header .actions-container {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1;
-    background-color: rgb(245, 245, 220, 0.5);
-    backdrop-filter: blur(0.2rem);
-    left: 0;
-    top: calc(var(--navbar-height));
-  }
+#component-mobile-header button.effect1 {
+  width: 3rem;
+  background:transparent;
+  border:none;
+  height:2.5rem;
+  padding:0px;
+  overflow:hidden;
+}
 
-  #component-mobile-header .actions {
-    top: calc(0.5*var(--navbar-height));
-    border-radius: 0.5rem;
-    position: relative;
-    width: 60vw;
-    height: 75vh;
-    margin: auto;
-    z-index: 1;
+#component-mobile-header .actions-container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  background-color: rgb(245, 245, 220, 0.5);
+  backdrop-filter: blur(0.2rem);
+  left: 0;
+  top: calc(var(--navbar-height));
+}
 
+#component-mobile-header .actions {
+  top: calc(0.5*var(--navbar-height));
+  border-radius: 0.5rem;
+  position: relative;
+  width: 60vw;
+  height: 75vh;
+  margin: auto;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+#component-mobile-header .action.body-view {
+  font-size: 1.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+#component-mobile-header .action.body-view:hover {
+  background-color: aquamarine;
+}
+
+#component-mobile-header .action.header-view {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-  }
+    padding: 1rem 0;
+    height: 1.5em;
+}
 
-  #component-mobile-header .action {
-    font-size: 1.8rem;
-    font-weight: bold;
-    cursor: pointer;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-  }
+#component-mobile-header .action.header-view.active {
+    border-bottom: solid 0.1rem beige;
+}
+  
+#component-mobile-header button.effect1:focus{
+  outline:none;
+}
 
-  #component-mobile-header .action:hover {
-    background-color: aquamarine;
-  }
-  
-  #component-mobile-header button.effect1:focus{
-    outline:none;
-  }
-  
-  #component-mobile-header .effect1 span{
-    display:inline-block;
-    width:80%;
-    height:3px;
-    background:#000;
-    position:relative;
-    transition:all .2s;
-  }
-  
-  #component-mobile-header .effect1 span:before,
-  #component-mobile-header .effect1 span:after{
-    content:'';
-    position:absolute;
-    width:100%;
-    background:#000;
-    height:3px;
-    left:0px;
-    transition:all .3s;
-  }
-  
-  #component-mobile-header .effect1 span:before{
-    top:10px;
-  }
-  
-  #component-mobile-header .effect1 span:after{
-    bottom:10px;
-  }
-  
-  #component-mobile-header button.effect1.effect1:hover span:after{
-    left:-5px;
-  }
-  
-  #component-mobile-header button.effect1.effect1:hover span:before{
-    left:5px;
-  }
-  
-  #component-mobile-header button.effect1.effect1 span.active{
-    background:transparent;
-  }
-  
-  #component-mobile-header button.effect1.effect1 span.active:after,
-  #component-mobile-header button.effect1.effect1 span.active:before{
-    top: 0px;
-    left: 0px;
-  }
-  
-  #component-mobile-header button.effect1.effect1 span.active:after{
-    transform:rotate(-45deg);
-    -webkit-transform:rotate(-45deg);
-    -moz-transform:rotate(-45deg);
-    -ms-transform:rotate(-45deg);
-  }
-  
-  #component-mobile-header button.effect1.effect1 span.active:before{
-    transform:rotate(45deg);
-    -webkit-transform:rotate(45deg);
-    -moz-transform:rotate(45deg);
-    -ms-transform:rotate(45deg);
-  }
+#component-mobile-header .effect1 span{
+  display:inline-block;
+  width:80%;
+  height:3px;
+  background:#000;
+  position:relative;
+  transition:all .2s;
+}
+
+#component-mobile-header .effect1 span:before,
+#component-mobile-header .effect1 span:after{
+  content:'';
+  position:absolute;
+  width:100%;
+  background:#000;
+  height:3px;
+  left:0px;
+  transition:all .3s;
+}
+
+#component-mobile-header .effect1 span:before{
+  top:10px;
+}
+
+#component-mobile-header .effect1 span:after{
+  bottom:10px;
+}
+
+#component-mobile-header button.effect1.effect1:hover span:after{
+  left:-5px;
+}
+
+#component-mobile-header button.effect1.effect1:hover span:before{
+  left:5px;
+}
+
+#component-mobile-header button.effect1.effect1 span.active{
+  background:transparent;
+}
+
+#component-mobile-header button.effect1.effect1 span.active:after,
+#component-mobile-header button.effect1.effect1 span.active:before{
+  top: 0px;
+  left: 0px;
+}
+
+#component-mobile-header button.effect1.effect1 span.active:after{
+  transform:rotate(-45deg);
+  -webkit-transform:rotate(-45deg);
+  -moz-transform:rotate(-45deg);
+  -ms-transform:rotate(-45deg);
+}
+
+#component-mobile-header button.effect1.effect1 span.active:before{
+  transform:rotate(45deg);
+  -webkit-transform:rotate(45deg);
+  -moz-transform:rotate(45deg);
+  -ms-transform:rotate(45deg);
+}

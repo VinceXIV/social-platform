@@ -8,6 +8,8 @@
     -moz-osx-font-smoothing: grayscale;
 
     --navbar-height: max(10vh, 5rem);
+
+    /* outline: solid 0.1rem red; */
 }
 
 .page {
@@ -58,7 +60,7 @@ ul li {
 /* Works on Firefox */
 * {
     scrollbar-width: thin;
-    scrollbar-color: aquamarine beige;
+    scrollbar-color: #7fffd4 beige;
   }
   
   /* Works on Chrome, Edge, and Safari */

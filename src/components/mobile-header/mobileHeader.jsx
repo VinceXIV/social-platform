@@ -38,9 +38,19 @@ function MobileHeader({actions, getActiveState}){
             {
                 loggedIn ? 
                     <Button text="Logout" action={()=>dispatch(logout())} />
-                :   <Button text="Login" action={()=> navigate('login')}/>
+                :   
+                    <>
+                        <ul>
+                            <li className={`action header-view ${getActiveState('/home/feed')}`}
+                                onClick={()=>handleActionClick('home/feed')}>
+                                Feed
+                            </li>
+                        </ul>
+                        <Button text="Login" action={()=> navigate('login')}/>
+                    </>
             }
             
+
             {/* The hurmbuger icon */}
             <div ref={headerRef} className={`wrapper ${loggedIn? '': 'display-none'}`}>
                 <button className="effect1">
@@ -51,10 +61,10 @@ function MobileHeader({actions, getActiveState}){
             {/* the options e.g feed, my posts, etc */}
             <div className={`actions-container ${showActions && loggedIn? '': 'display-none'}`}>
                 <ul className="actions">
-                    {
+                     {
                         actions.map((action, i) => {
                             return (
-                                <li key={`desktop-action-${i}`} className={`action ${getActiveState(action.path)}`}
+                                <li key={`mobile-action-${i}`} className={`action body-view ${getActiveState(action.path)}`}
                                     onClick={()=>handleActionClick(action.path.slice(1))}>
                                     {action.name}
                                 </li>

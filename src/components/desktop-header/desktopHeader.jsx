@@ -9,26 +9,36 @@ function DesktopHeader({actions, getActiveState}){
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    function getShowable(){
+        return actions.filter(action => {
+            if(loggedIn){
+                return action
+            }else if(action.showWhenLoggedOut) {
+                return action
+            }
+        })
+    }
+
     return (
         <ul id="desktop-header" className="menu">
+                        
+            {
+                getShowable(actions).map((action, i) => {
+                    return (
+                        <li key={`desktop-action-${i}`} className={`action ${getActiveState(action.path)}`}
+                            onClick={()=>navigate(action.path.slice(1))}>
+                            {action.name}
+                        </li>
+                    )
+                })
+            }
+
             {
                 loggedIn ?
-                    <>
-                        {
-                            actions.map((action, i) => {
-                                return (
-                                    <li key={`desktop-action-${i}`} className={`action ${getActiveState(action.path)}`}
-                                        onClick={()=>navigate(action.path.slice(1))}>
-                                        {action.name}
-                                    </li>
-                                )
-                            })
-                        }
-                        <li><Button text="Logout" action={()=>dispatch(logout())} /></li>
-                    </>
+                    <li><Button text="Logout" action={()=>dispatch(logout())} /></li>
                 :
-                <li><Button text="Login" action={()=> navigate('login')}/></li>
-            }
+                    <li><Button text="Login" action={()=> navigate('login')}/></li>
+            }  
         </ul>
     )
 }

@@ -11,11 +11,11 @@ function Header(){
     const navigate = useNavigate()
 
     const actions = [
-        {name: 'Feed', path: '/home/feed'},
-        {name: 'Following', path: '/home/following'},
-        {name: 'Users', path: '/users/list'},
-        {name: 'My Posts', path: '/home/my-posts'},
-        {name: userDetails.name, path: `/users/${userDetails.id}/profile`}
+        {name: 'Feed', path: '/home/feed', showWhenLoggedOut: true},
+        {name: 'Following', path: '/home/following', showWhenLoggedOut: false},
+        {name: 'Users', path: '/users/list', showWhenLoggedOut: false},
+        {name: 'My Posts', path: '/home/my-posts', showWhenLoggedOut: false},
+        {name: userDetails.name, path: `/users/${userDetails.id}/profile`, showWhenLoggedOut: false}
     ]
 
     function getActiveState(expectedPathName){

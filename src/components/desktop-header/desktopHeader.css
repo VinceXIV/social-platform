@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     padding: 1rem 0;
+    height: 1.5em;
 }
 
 #desktop-header .action.active {
@@ -17,10 +18,6 @@
     display: flex;
     gap: 1rem;
     align-items: center;
-}
-
-#desktop-header .action {
-    height: 1.5em;
 }
 
 #desktop-header.menu {
