@@ -5,7 +5,7 @@ import Paywall from "../../components/paywall/paywall";
 import { useState } from "react";
 import Button from "../../elements/button/button";
 import { cosine } from "string-comparison";
-import { setPosts } from "../../redux/posts";
+import { updatePosts } from "../../redux/posts";
 
 function Posts(){
     const paywalled = useSelector(state => state.paywall.paywalled)
@@ -36,7 +36,7 @@ function Posts(){
             return cosine.similarity(a.title, searchInput) < cosine.similarity(b.title, searchInput)
         })
 
-        dispatch(setPosts(sortedPosts))        
+        dispatch(updatePosts(sortedPosts))        
     }
 
     function handleSearchInputChange(e){

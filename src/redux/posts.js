@@ -20,11 +20,18 @@ export const counterSlice = createSlice({
         state.posts = data.payload.map(p => {
             return {
                 ...p,
+                // Because the json placeholder posts
+                // don't have likes and views
                 likes: Math.floor(Math.random()*50),
                 views: Math.floor(Math.random()*5000)
             }
         })
 
+        localStorage.setItem('posts', JSON.stringify(state))
+    },
+
+    updatePosts: (state, posts) => {
+        state.posts = posts.payload
         localStorage.setItem('posts', JSON.stringify(state))
     },
 
@@ -127,6 +134,6 @@ export const counterSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const {setPosts, addPost, deletePost, updatePost,
     setLoggedInUserPosts, makeViewed, makeLiked,
-    makeUnliked, block } = counterSlice.actions
+    makeUnliked, block, updatePosts } = counterSlice.actions
 
 export default counterSlice.reducer
