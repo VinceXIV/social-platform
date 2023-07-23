@@ -117,9 +117,16 @@ function Post({post}){
                         <li>
                             <Button text={postState.hidden? 'open': 'hide'} action={()=>handlePostClick(post.id)} />
                         </li>
-                        <li className={loggedIn? '': 'display-none'}>
-                            <Button text="Block" action={handleBlockClick} />
-                        </li>
+
+                        {
+                            // Don't show this button when we are currently on the of 
+                            // blocking the post. There's a "Confirm" button already
+                            !postState.blocking ?
+                                <li className={loggedIn? '': 'display-none'}>
+                                    <Button text="Block" action={handleBlockClick} />
+                                </li>
+                            : ''
+                        }
                     </ul>
                 </h2>
 
