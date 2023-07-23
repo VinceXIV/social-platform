@@ -9,6 +9,7 @@ import { mobileThreshold } from './utilities/variables'
 import { useDispatch } from 'react-redux'
 import { updateView } from './redux/view'
 import PostPage from './pages/post/postPage'
+import Cancel from './pages/cancel-subscription/cancel'
 
 function App() {
   const dispatch = useDispatch()
@@ -38,6 +39,7 @@ function App() {
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/users/:id/profile" element={<Profile />} />
         <Route exact path="/posts/:id" element={<PostPage />} />
+        <Route exact path="/subscriptions/cancelled" element={<Cancel />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </>
