@@ -1,5 +1,6 @@
 #section-posts {
     padding: 0.5rem;
+    min-height: calc(100vh - var(--navbar-height));
 }
 
 #section-posts form {
