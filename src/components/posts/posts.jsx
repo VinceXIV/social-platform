@@ -51,16 +51,24 @@ function Posts(){
                 paywalled? <Paywall /> : ''
             }
 
-            <form onSubmit={(e)=>sortBasedOnSearchTerm(posts,e)}>
-                <div className="width-n-input">
-                    <input name='search' 
-                        value={searchInput}
-                        onChange={handleSearchInputChange}
-                        placeholder="Search post"
-                    />
-                <Button text="submit" action={(e)=>sortBasedOnSearchTerm(posts,e)} />
-                </div>
-            </form>
+            {
+                // Don't return the search bar if posts don't exist
+                // i.e it is an array of size 0
+                posts.length ?
+
+                    <form onSubmit={(e)=>sortBasedOnSearchTerm(posts,e)}>
+                        <div className="width-n-input">
+                            <input name='search' 
+                                value={searchInput}
+                                onChange={handleSearchInputChange}
+                                placeholder="Search post"
+                            />
+                        <Button text="submit" action={(e)=>sortBasedOnSearchTerm(posts,e)} />
+                        </div>
+                    </form>
+
+                : ''
+            }
 
             <div className="posts">
                 {
