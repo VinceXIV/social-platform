@@ -1,10 +1,11 @@
 
 // Here, I am implementing a simple recommendation using the 
 // Naive Bayes Algorithm. 
-// This function expects the viewedPostIds, and likedPostIds to be
-// arrays of ids of posts the user viewed or liked, respectively
-// allPosts, on the other hand, is an array of objects which
-// are in the form {title: "the quick brown fox", body: "blah blah blah"}
+// This function takes in the ids of viewed and liked posts, and
+// also all posts then returns posts that have not been viewed yet
+// sorted in the order that is likely preferred by the user. That is,
+// The first value in the array of result is the most similar to those
+// that the user has liked
 function getRecommendations(viewedPostIds, likedPostIds, allPosts, limit=5){  
     
     // Viewed posts but not liked
