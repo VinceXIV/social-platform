@@ -64,16 +64,12 @@
 }
 
 #component-mobile-header .action.header-view {
-    display: flex;
-    align-items: center;
-    padding: 1rem 0;
-    height: 1.5em;
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+  height: 1.5em;
 }
 
-#component-mobile-header .action.header-view.active {
-    border-bottom: solid 0.1rem beige;
-}
-  
 #component-mobile-header button.effect1:focus{
   outline:none;
 }
