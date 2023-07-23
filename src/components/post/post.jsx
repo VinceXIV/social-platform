@@ -105,8 +105,9 @@ function Post({post}){
     }
 
     function handleConfirmBlockClick(){
-        
-        if(userType === 'regular'){
+        if(!loggedIn){
+            alert('You have to log in to do that')
+        }else if(userType === 'regular'){
             dispatch(showPaywall())
         }else if(userType === 'premium'){
             dispatch(block(post.id))
@@ -139,7 +140,7 @@ function Post({post}){
                                 // Don't show this button when we are currently on the of 
                                 // blocking the post. There's a "Confirm" button already
                                 !postState.blocking ?
-                                    <li className={loggedIn? '': 'display-none'}>
+                                    <li>
                                         <Button text="Block" action={handleBlockClick} />
                                     </li>
                                 : ''
