@@ -89,6 +89,14 @@ function Post({post}){
         setPostState(postState => ({...postState, blocking: false}))
     }
 
+    function handleConfirmBlockClick(){
+        if(userType === 'regular'){
+            dispatch(showPaywall())
+        }else if(userType === 'premium'){
+            dispatch(block(post.id))
+        }
+    }
+
     return (
         <div ref={postRef} id="component-post" className={`component ${postState.blocking? 'blocking': ''}`} >
             {/* this will appear when one is trying to block the post */}
@@ -96,7 +104,7 @@ function Post({post}){
                 <h1>You are about to block this post</h1>
 
                 <div>
-                    <Button text="Confirm" action={()=>dispatch(block(post.id))}/>
+                    <Button text="Confirm" action={handleConfirmBlockClick}/>
                     <Button text="Cancel" action={cancelBlockProcess}/>
                 </div>
             </div>
