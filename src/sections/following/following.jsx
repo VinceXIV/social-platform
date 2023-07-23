@@ -17,7 +17,6 @@ function Following(){
     
     return (
         <div id="section-following" className="content">
-            <Posts />
             {
                 ! following.length ?
                     <div className="not-following">
@@ -26,6 +25,7 @@ function Following(){
                     </div>
                 : ''
             }
+            <Posts />
         </div>
     )
 }
