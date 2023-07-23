@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { makeViewed, makeLiked, makeUnliked } from "../../redux/posts";
-import { regularUserLimit } from "../../utilities/variables";
+import { postViewLimit } from "../../utilities/variables";
 import { block } from "../../redux/posts";
 import { showPaywall } from "../../redux/paywall";
 import Button from "../../elements/button/button";
@@ -63,16 +63,16 @@ function Post({post}){
     function handlePostClick(postId){
         if(!postState.hidden){
             setPostState(postState => ({...postState, hidden: true}))
-        }else if(viewedPosts.length >= regularUserLimit){
+        }else if(viewedPosts.length >= postViewLimit){
             // If they are a premium user, or this post is simply them 
             // reopening one of the posts they have already viewed
             if(userType === 'premium' || viewedPosts.find(p => p === postId)){  
                 setPostState(postState => ({...postState, hidden: false}))
                 dispatch(makeViewed(postId)) // Register this post as viewed
             }else if(loggedIn) { // Else they should pay
-                dispatch(showPaywall([`You have reached today's limit of ${regularUserLimit} posts.`, "Join premium to view more"]))
+                dispatch(showPaywall([`You have reached today's limit of ${postViewLimit} posts.`, "Join premium to view more"]))
             }else {
-                alert('log in to view more posts')
+                alert(`You have used all your free ${postViewLimit} posts allocation for today. Log in to view more`)
             }
         }else {
             setPostState(postState => ({...postState, hidden: false}))

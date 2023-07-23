@@ -12,6 +12,7 @@ function PostPage(){
     const [post] = useGet(`${apiHost}/posts/${postId}`)
     const loggedIn = useSelector(state => state.user.loggedIn)
     const navigate = useNavigate()
+    
 
     useEffect(()=>{
         if(!loggedIn){
