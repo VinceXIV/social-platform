@@ -45,6 +45,10 @@
     border-radius: 1rem;
 }
 
+#paywall .paywall-content.mobile {
+    width: 80vw;
+}
+
 #paywall .paywall-details {
     display: flex;
     flex-direction: column;
@@ -59,8 +63,11 @@
     list-style-type: disc;
 }
 
+#paywall h1 {
+    color: goldenrod;
+}
+
 #paywall p,
-#paywall h1,
 #paywall ul li {
     color: beige;
 }

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 function Paywall(){
     const paywallMessages = useSelector(state => state.paywall.messages)
+    const view = useSelector(state => state.view.view)
     const dispatch = useDispatch()
     function handlePaymentClick(){
 
@@ -12,7 +13,7 @@ function Paywall(){
 
     return (
         <div id="paywall" onClick={()=>dispatch(unshowPaywall())}>
-            <div className="paywall-content">
+            <div className={`paywall-content ${view}`}>
                 <h1>Join Premium</h1>
                 <div className="paywall-details">
                     {
@@ -20,7 +21,7 @@ function Paywall(){
                             return <p key={`paywall-message-${i}`}>{m}</p>
                         })
                     }
-                    <p>You will be able to</p>
+                    <p>Unlock more features in your app including; </p>
                     <ul>
                         <li>View all posts</li>
                         <li>Like and add comments on posts</li>
