@@ -21,7 +21,9 @@ function Login(){
             .then(res => {
                 if(res.ok){
                     res.json().then(data => {
-                        dispatch(setLoggedInUserPosts(data))
+                        if(setLoggedInUserPosts){
+                            dispatch(setLoggedInUserPosts(data))
+                        }
                     })
                 }else {
                     res.json().then(error => console.warn(error))
