@@ -71,7 +71,7 @@ function LoginForm(){
     }
 
     return (
-        <div className={`component login-component ${view === 'mobile'? 'mobile': 'desktop'}`}>
+        <div className={`component login-component ${view}`}>
             <form className="login-form" onSubmit={handleFormSubmit}>
                 <div className="input-container">
                     <label htmlFor="username">Username</label>
