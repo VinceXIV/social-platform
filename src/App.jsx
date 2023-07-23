@@ -11,6 +11,7 @@ import { updateView } from './redux/view'
 import PostPage from './pages/post/postPage'
 import SubscriptionCancelled from './pages/cancel-subscription/subscriptionCancelled'
 import SuccessfulSubscription from './pages/successful-subscription/successfulSubscription'
+import UserList from './pages/users/userList'
 
 function App() {
   const dispatch = useDispatch()
@@ -37,8 +38,8 @@ function App() {
       <Routes>
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/home/:action" element={<Home />} />
-        <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/users/:id/profile" element={<Profile />} />
+        <Route exact path="/users/list" element={<UserList />} />
         <Route exact path="/posts/:id" element={<PostPage />} />
         <Route exact path="/subscriptions/cancelled" element={<SubscriptionCancelled />} />
         <Route exact path="/subscriptions/success" element={<SuccessfulSubscription />} />

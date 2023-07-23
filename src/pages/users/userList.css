@@ -1,4 +1,4 @@
-.sidebar {
+#page-users {
     width: 35%;
     height: calc(90vh - var(--navbar-height));
     
@@ -11,7 +11,7 @@
     border-radius: 0.5rem;
 }
 
-.sidebar .scroll {
+#page-users .scroll {
     width: 100%;
     height: 100%;
     overflow-y: auto;

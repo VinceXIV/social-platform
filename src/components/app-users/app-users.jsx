@@ -7,7 +7,7 @@ import Button from "../../elements/button/button";
 import { follow, unfollow, block, unblock } from "../../redux/user";
 import { useNavigate } from "react-router-dom";
 
-function FollowingUsers(){
+function AppUsers(){
     const userDetails = useSelector(state => state.user.userDetails)
     const [allUsers] = useGet(`${apiHost}/users`) // Get all users except the the logged in user
     const {following, blocked, userType} = useSelector(state => state.user)
@@ -83,4 +83,4 @@ function FollowingUsers(){
     )
 }
 
-export default FollowingUsers;
+export default AppUsers;

@@ -1,5 +1,5 @@
 import "./sidebar.css"
-import FollowingUsers from "../../components/app-users/app-users"
+import AppUsers from "../../components/app-users/app-users"
 import Recommended from "../../components/recommended/recommended"
 
 function Sidebar(){
@@ -8,15 +8,15 @@ function Sidebar(){
         if(location.pathname === '/home/feed'){
             return <Recommended />
         }else if(location.pathname === '/home/my-posts'){
-            return <FollowingUsers />
+            return <AppUsers />
         }else if(location.pathname === '/home/users'){
-            return <FollowingUsers />
+            return <AppUsers />
         }else if(location.pathname === '/home/following'){
-            return <FollowingUsers />
+            return <AppUsers />
         }else if(location.pathname === '/home/profile'){
-            return <FollowingUsers />
+            return <AppUsers />
         }else {
-            return <FollowingUsers />
+            return <AppUsers />
         }
     }
 

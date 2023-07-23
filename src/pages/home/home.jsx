@@ -6,6 +6,7 @@ import Following from "../../sections/following/following";
 import Users from "../../sections/users/users";
 import Sidebar from "../../sections/sidebar/sidebar";
 import { useSelector } from "react-redux";
+import Button from "../../elements/button/button";
 
 function Home(){
     const location = useLocation()

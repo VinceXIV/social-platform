@@ -13,6 +13,7 @@ function Header(){
     const actions = [
         {name: 'Feed', path: '/home/feed'},
         {name: 'Following', path: '/home/following'},
+        {name: 'Users', path: '/users/list'},
         {name: 'My Posts', path: '/home/my-posts'},
         {name: userDetails.name, path: `/users/${userDetails.id}/profile`}
     ]
