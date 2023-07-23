@@ -87,6 +87,9 @@
 
 #paywall form.payment-btn {
     background-color: transparent;
+    width: 10rem;
+    height: max-content;
+    outline: none;
 }
 
 #paywall .close-paywall:hover {
