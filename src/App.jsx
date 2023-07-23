@@ -41,7 +41,7 @@ function App() {
         <Route exact path="/users/:id/profile" element={<Profile />} />
         <Route exact path="/posts/:id" element={<PostPage />} />
         <Route exact path="/subscriptions/cancelled" element={<SubscriptionCancelled />} />
-        <Route exact path="/subscriptions/successful" element={<SuccessfulSubscription />} />
+        <Route exact path="/subscriptions/success" element={<SuccessfulSubscription />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </>
