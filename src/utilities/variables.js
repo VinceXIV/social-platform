@@ -1,3 +1,7 @@
+//-- This file contains functions that are used a lot in this project
+//-- It porovides a way to not rewriting them again and again
+
+
 // The maximum number of posts that can be viewed by a regular 
 const regularUserLimit = 20 
 
