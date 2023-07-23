@@ -39,7 +39,8 @@ function Post({post}){
         .then(res => {
             if(res.ok){
                 res.json().then(data => {
-                    setPostState(postState => ({...postState, userDetails: data[0]}))
+                    console.log(data)
+                    setPostState(postState => ({...postState, userDetails: data}))
                 })
             }else{
                 res.json().then(error => console.warn(error))
@@ -125,6 +126,7 @@ function Post({post}){
 
             {/* This is the whole of the post that would normally be rendered */}
             <div className="post-content">
+                    <div>{postState?.userDetails?.name}</div>
                     <div className="post-title">
                         <h1>{post.title}</h1>
                         <ul className="header-buttons">
