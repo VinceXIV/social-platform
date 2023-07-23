@@ -7,12 +7,11 @@ import Button from "../../elements/button/button";
 import { follow, unfollow, block, unblock } from "../../redux/user";
 import { useNavigate } from "react-router-dom";
 
-function AppUsers(){
+function AppUsers({handleUserClick}){
     const userDetails = useSelector(state => state.user.userDetails)
     const [allUsers] = useGet(`${apiHost}/users`) // Get all users except the the logged in user
     const {following, blocked, userType} = useSelector(state => state.user)
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     // Is the logged in user following the user whose id
     // has been sent to this method?
@@ -36,10 +35,6 @@ function AppUsers(){
         }else {
             dispatch(block(userId))
         }
-    }
-
-    function handleUserClick(userId){
-        navigate(`/users/${userId}/profile`)
     }
 
     function removeLoggedInUser(allUsers){
