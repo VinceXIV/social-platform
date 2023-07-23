@@ -15,10 +15,10 @@ function Post({post}){
     const viewedPosts = useSelector(state => state.posts.viewed)
     const likedPosts = useSelector(state => state.posts.liked)
     const paywalled = useSelector(state => state.paywall.paywalled)
-    const { userType } = useSelector(state => state.user.userType)
+    const { userType, loggedIn } = useSelector(state => state.user)
     const postRef = useRef()
     const dispatch = useDispatch()
-
+    
     useEffect(()=>{
         // Get the comments for each posts so that when a 
         // user clicks on particular post, they can see the comments
@@ -106,8 +106,12 @@ function Post({post}){
                 <h2 className="post-title">
                     {post.title}
                     <ul className="header-buttons">
-                        <li><Button text={postState.hidden? 'view': 'hide'} action={()=>handlePostClick(post.id)} /></li>
-                        <li><Button text="Block" action={handleBlockClick} /></li>
+                        <li>
+                            <Button text={postState.hidden? 'view': 'hide'} action={()=>handlePostClick(post.id)} />
+                        </li>
+                        <li className={loggedIn? '': 'display-none'}>
+                            <Button text="Block" action={handleBlockClick} />
+                        </li>
                     </ul>
                 </h2>
 
