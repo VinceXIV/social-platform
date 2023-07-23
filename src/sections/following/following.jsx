@@ -10,10 +10,19 @@ function Following(){
     const following = useSelector(state => state.user.following)
     const [followingPosts] = useGet(`${apiHost}/posts`, following)
     const dispatch = useDispatch()
+    const view = useSelector(state => state.view.view)
 
     useEffect(()=>{
         dispatch(setPosts(followingPosts))
     }, [followingPosts])
+
+    function getText(view){
+        if(view === 'mobile'){
+            return 'Go to users, follow some then come back here to see their posts'
+        }else if(view === 'desktop'){
+            return 'Click the follow button to see their posts'
+        }
+    }
     
     return (
         <div id="section-following" className="content">
@@ -21,7 +30,7 @@ function Following(){
                 ! following.length ?
                     <div className="not-following">
                         <p className="info">You are currently not following any user</p>
-                        <p className="call-to-action">Click the follow button to see their posts</p>
+                        <p className="call-to-action">{getText(view)}</p>
                     </div>
                 : ''
             }
