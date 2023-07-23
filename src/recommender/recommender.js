@@ -153,18 +153,18 @@ function pWordLiking(targetWord, wordArray, alpha=1){
 
 // EXAMPLE
 
-const allPosts = [
-    {id: 1, title: "brown fox"},
-    {id: 2, title: "the the the quick is haah"}, 
-    {id: 3, title: "love is a beautiful thing"},
-    {id: 4, title: "I love lasagna"},
-    {id: 5, title: "the fox is cool"},
-    {id: 6, title: "and now the end is near"},
-    {id: 7, title: "this fox is awesome"}
-]
+// const allPosts = [
+//     {id: 1, title: "brown fox"},
+//     {id: 2, title: "the the the quick is haah"}, 
+//     {id: 3, title: "love is a beautiful thing"},
+//     {id: 4, title: "I love lasagna"},
+//     {id: 5, title: "the fox is cool"},
+//     {id: 6, title: "and now the end is near"},
+//     {id: 7, title: "this fox is awesome"}
+// ]
 
-const likedPostIds = [1, 5]
-const viewedPostIds = [1, 2, 5]
+// const likedPostIds = [1, 5]
+// const viewedPostIds = [1, 2, 5]
 
 // We see that that the result given the above example is.
 // This is just what we expect since the liked posts both contain
@@ -175,7 +175,8 @@ const viewedPostIds = [1, 2, 5]
 //     { id: 4, title: 'I love lasagna' },
 //     { id: 6, title: 'and now the end is near' }
 // ]
-console.log(getRecommendations(viewedPostIds, likedPostIds, allPosts))
+
+// console.log(getRecommendations(viewedPostIds, likedPostIds, allPosts))
 
 
 export default getRecommendations;
