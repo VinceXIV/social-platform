@@ -2,13 +2,23 @@ import Button from "../../elements/button/button";
 import "./paywall.css"
 import { unshowPaywall } from "../../redux/paywall";
 import { useDispatch, useSelector } from "react-redux";
+import { updateUserType } from "../../redux/user";
+import { useNavigate } from "react-router-dom";
 
 function Paywall(){
     const paywallMessages = useSelector(state => state.paywall.messages)
     const view = useSelector(state => state.view.view)
     const dispatch = useDispatch()
-    function handlePaymentClick(){
+    const navigate = useNavigate()
 
+
+    function handlePaymentClick(e){
+        e.preventDefault()
+        e.stopPropagation()
+
+        dispatch(unshowPaywall())
+        navigate('/subscriptions/success')
+        dispatch(updateUserType('premium'))
     }
 
     return (
@@ -41,6 +51,10 @@ function Paywall(){
                             <span className="amount">$8 </span>
                             <span className="amount-info">(33% off)</span>
                         </p>
+
+                        <div className="mock-subscribe">
+                            <Button text="mock subscribe" action={handlePaymentClick} />
+                        </div>
                         
                         {/* Paypal button */}
                         <form className="payment-btn" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">

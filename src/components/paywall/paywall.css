@@ -80,6 +80,11 @@
     cursor: pointer;
 }
 
+#paywall .mock-subscribe {
+    display: flex;
+    justify-content: center;
+}
+
 #paywall form.payment-btn {
     background-color: transparent;
 }
