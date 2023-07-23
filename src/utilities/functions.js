@@ -2,9 +2,14 @@
 //-- It porovides a way to not rewriting them again and again
 
 function randomize(array){
-    return array.sort(() => {
-        return Math.random() - Math.random()
-    })
+    if(Array.isArray(array)){
+        return array.sort(() => {
+            return Math.random() - Math.random()
+        })
+    }else {
+        console.warn('randomize function received the following non-array value; ', array)
+        return array
+    }
 }
 
 export { randomize }
