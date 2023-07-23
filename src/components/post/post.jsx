@@ -107,7 +107,7 @@ function Post({post}){
                     {post.title}
                     <ul className="header-buttons">
                         <li>
-                            <Button text={postState.hidden? 'view': 'hide'} action={()=>handlePostClick(post.id)} />
+                            <Button text={postState.hidden? 'open': 'hide'} action={()=>handlePostClick(post.id)} />
                         </li>
                         <li className={loggedIn? '': 'display-none'}>
                             <Button text="Block" action={handleBlockClick} />
