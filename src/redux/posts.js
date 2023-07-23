@@ -1,35 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
-import apiHost from '../utilities/api'
-
-
-// First we fetch 20 posts to be shown by default to 
-// users who have not logged in yet
-const res = await fetch(`${apiHost}/posts`)
-
-let posts = []
-
-if(res.ok){
-    const results = await res.json().then(data => data)
-
-    // Add some random number of likes and views
-    // for each post
-    posts = results.map(p => {
-        return {
-            ...p,
-            likes: Math.floor(Math.random()*50),
-            views: Math.floor(Math.random()*5000)
-        }
-    })
-    // Randomize the posts afterwards. That's because the posts
-    // by default come are sorted by users so all posts of user 1
-    // are shown before user 2, before user 3 ...
-    .sort(()=> Math.random() - Math.random())
-}
 
 // We use the posts we got above to set it as the
 // default state of the posts to be shown to the user
 const initialState = {
-    posts: JSON.parse(localStorage.getItem('posts') || null)?.posts || posts, // These are posts by the users of the social app
+    posts: JSON.parse(localStorage.getItem('posts') || null)?.posts || [], // These are posts by the users of the social app
     viewed: JSON.parse(localStorage.getItem('posts') || null)?.viewed || [], // Will contain a list of posts for which the user has viewed
     liked: JSON.parse(localStorage.getItem('posts') || null)?.liked || [],
     unliked: JSON.parse(localStorage.getItem('posts') || null)?.unliked || [], // Holds a list of posts that were previously liked but not any more
