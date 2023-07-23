@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import { randomize } from './functions'
 
 function useGet(url, filterIds=null, key='userId', inverse=false){
     const [state, setState] = useState([])
@@ -10,16 +11,19 @@ function useGet(url, filterIds=null, key='userId', inverse=false){
 
                 res.json().then(data => {
                     if(!filterIds){
-                        setState(data)
+                        // Randomize it because the data returned is sorted by userIds
+                        // Which means if we display it it will show all posts by one
+                        // user followed by the post of another user (not good)
+                        setState(randomize(data))
                     }else if(!inverse){
                         // Get the data for which the userId is in the filterIds array
-                        setState(data.filter(d => {
+                        setState(randomize(data).filter(d => {
                             return !!filterIds.find(id => id === d[key])
                         }))
                         
                     }else if(inverse){
                         // Get the data for which the userId is not in the filterIds array
-                        setState(data.filter(d => {
+                        setState(randomize(data).filter(d => {
                             return !!filterIds.find(id => id !== d[key])
                         }))                    
                     }
