@@ -25,22 +25,22 @@ export const counterSlice = createSlice({
             }
         })
 
-        localStorage.setItem('post', JSON.stringify(state))
+        localStorage.setItem('posts', JSON.stringify(state))
     },
 
     addPost: (state, data) => {
         state.posts = [...state.posts, data.payload]
-        localStorage.setItem('post', JSON.stringify(state))
+        localStorage.setItem('posts', JSON.stringify(state))
     },
 
     deletePost: (state, data) => {
         state.posts = state.posts.filter(post => post.id !== data.payload.id)
-        localStorage.setItem('post', JSON.stringify(state))
+        localStorage.setItem('posts', JSON.stringify(state))
     },
 
     block: (state, postId) => {
         state.blocked.push(postId.payload)
-        localStorage.setItem('post', JSON.stringify(state))
+        localStorage.setItem('posts', JSON.stringify(state))
     },
 
     updatePost: (state, data) => {
@@ -51,7 +51,7 @@ export const counterSlice = createSlice({
                 return post
             }
         })
-        localStorage.setItem('post', JSON.stringify(state))
+        localStorage.setItem('posts', JSON.stringify(state))
     },
 
     makeViewed: (state, postId) => {
@@ -72,7 +72,7 @@ export const counterSlice = createSlice({
         viewedPosts.push(postId.payload)
 
         state.viewed = Array.from(new Set(viewedPosts))
-        localStorage.setItem('post', JSON.stringify(state))
+        localStorage.setItem('posts', JSON.stringify(state))
     },
 
     makeLiked: (state, postId) => {
@@ -96,7 +96,7 @@ export const counterSlice = createSlice({
         likedPosts.push(postId.payload)
 
         state.liked = Array.from(new Set(likedPosts))
-        localStorage.setItem('post', JSON.stringify(state))
+        localStorage.setItem('posts', JSON.stringify(state))
     },
 
     makeUnliked: (state, postId) => {
@@ -119,7 +119,7 @@ export const counterSlice = createSlice({
         unlikedPosts.push(postId.payload)
 
         state.unliked = Array.from(new Set(unlikedPosts))
-        localStorage.setItem('post', JSON.stringify(state))
+        localStorage.setItem('posts', JSON.stringify(state))
     }
   },
 })
