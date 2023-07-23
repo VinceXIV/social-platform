@@ -31,23 +31,13 @@ function Paywall(){
                     </ul>
                 </div>
 
-                <p>Sounds like a plan?</p>
-
                 <div className="payments">
                     <div className="payment-option">
                         <p className="details">
-                            <span className="amount">$1</span>
-                        </p>
-                        <p className="details">Monthly plan</p>
-                        <Button text='Subscribe' action={handlePaymentClick} />
-                    </div>
-
-                    <div className="payment-option">
-                        <p className="details">
+                            <span>It's only </span>
                             <span className="amount">$8 </span>
                             <span className="amount-info">(33% off)</span>
                         </p>
-                        <p className="details">Yearly plan</p>
                         <Button text='Subscribe' action={handlePaymentClick} />
                     </div>
                 </div>
