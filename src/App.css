@@ -78,7 +78,11 @@ ul li {
     border: 0.1875rem solid beige;
   }
 
-@media only screen and (max-width: 50rem) {
+@media only screen and (max-width: 55rem) {
+    :root {
+        font-size: 14px;
+    }
+
     .sidebar {
         display: none;
     }
