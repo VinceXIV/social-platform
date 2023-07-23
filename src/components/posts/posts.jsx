@@ -6,7 +6,6 @@ import { useState } from "react";
 import Button from "../../elements/button/button";
 import { cosine } from "string-comparison";
 import { setPosts } from "../../redux/posts";
-import { useEffect } from "react";
 
 function Posts(){
     const paywalled = useSelector(state => state.paywall.paywalled)
@@ -15,18 +14,6 @@ function Posts(){
     const blockedUsers = useSelector(state => state.user.blocked)
     const blockedPosts = useSelector(state => state.posts.blocked)
     const posts = useSelector(state => state.posts.posts)
-
-    useEffect(()=>{
-        // Sort posts based on how similar they are with the search term
-        // Here, I am using the cosine similarity for string comparison
-        // Also, I am only searching for similarity in the post title
-        const modifiedPosts = [...posts]
-        const sortedPosts = modifiedPosts.sort((a, b)=> {
-            return cosine.similarity(a.title, searchInput) < cosine.similarity(b.title, searchInput)
-        })
-
-        dispatch(setPosts(sortedPosts))
-    }, [searchInput])
 
     function getShowable(posts){
         // Return only posts that are not blocked or the people who
@@ -38,13 +25,22 @@ function Posts(){
         })
     }
 
-    function handleSearchInputChange(e){
-        setSearchInput(e.target.value)
+    function sortBasedOnSearchTerm(posts, e){
+        e?.preventDefault()
+
+        // Sort posts based on how similar they are with the search term
+        // Here, I am using the cosine similarity for string comparison
+        // Also, I am only searching for similarity in the post title
+        const modifiedPosts = [...posts]
+        const sortedPosts = modifiedPosts.sort((a, b)=> {
+            return cosine.similarity(a.title, searchInput) < cosine.similarity(b.title, searchInput)
+        })
+
+        dispatch(setPosts(sortedPosts))        
     }
 
-    function searchPost(e){
-        e.preventDefault()
-
+    function handleSearchInputChange(e){
+        setSearchInput(e.target.value)
     }
 
     return (
@@ -55,7 +51,7 @@ function Posts(){
                 paywalled? <Paywall /> : ''
             }
 
-            <form onSubmit={searchPost}>
+            <form onSubmit={(e)=>sortBasedOnSearchTerm(posts,e)}>
                 <label htmlFor="search">Search Post</label>
                 <div className="width-n-input">
                     <input name='search' 
@@ -63,7 +59,7 @@ function Posts(){
                         onChange={handleSearchInputChange}
                         placeholder="Search terms are compared with the post titles"
                     />
-                <Button text="submit" action={searchPost} />
+                <Button text="submit" action={(e)=>sortBasedOnSearchTerm(posts,e)} />
                 </div>
             </form>
 
