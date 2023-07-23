@@ -42,6 +42,10 @@
     gap: 2rem;
 }
 
+#component-post .post-title.mobile {
+    justify-content: space-between;
+}
+
 #component-post .post-title h1 {
     font-size: 1.2rem;
 }

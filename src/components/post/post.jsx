@@ -132,7 +132,7 @@ function Post({post}){
             {/* This is the whole of the post that would normally be rendered */}
             <div className="post-content">
                     <div>{postState?.userDetails?.name}</div>
-                    <div className="post-title">
+                    <div className={`post-title ${view}`}>
                         <h1>{post.title}</h1>
                         <ul className="header-buttons">
                             <li>
