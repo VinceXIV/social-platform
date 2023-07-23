@@ -39,7 +39,6 @@ function Post({post}){
         .then(res => {
             if(res.ok){
                 res.json().then(data => {
-                    console.log(data)
                     setPostState(postState => ({...postState, userDetails: data}))
                 })
             }else{
