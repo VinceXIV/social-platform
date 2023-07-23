@@ -2,6 +2,8 @@
     width: 50vw;
     padding: 5vw;
     margin: auto;
+    position: relative;
+    top: calc(-1*var(--navbar-height));
 }
 
 .login-component.mobile {
