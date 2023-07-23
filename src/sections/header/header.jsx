@@ -2,12 +2,13 @@ import { useSelector } from "react-redux";
 import "./header.css"
 import DesktopHeader from "../../components/desktop-header/desktopHeader";
 import MobileHeader from "../../components/mobile-header/mobileHeader";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Header(){
     const view = useSelector(state => state.view.view)
     const location = useLocation()
     const userDetails = useSelector(state => state.user.userDetails)
+    const navigate = useNavigate()
 
     const actions = [
         {name: 'Feed', path: '/home/feed'},
@@ -27,7 +28,7 @@ function Header(){
     return (
         <div id="section-header">
             <div className="container">
-                <h1>Socially</h1>
+                <h1 onClick={()=>navigate('home/feed')}>Socially</h1>
 
                 {
                     view === 'desktop' ? 

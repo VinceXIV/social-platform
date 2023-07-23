@@ -52,12 +52,11 @@ function Posts(){
             }
 
             <form onSubmit={(e)=>sortBasedOnSearchTerm(posts,e)}>
-                <label htmlFor="search">Search Post</label>
                 <div className="width-n-input">
                     <input name='search' 
                         value={searchInput}
                         onChange={handleSearchInputChange}
-                        placeholder="Search terms are compared with the post titles"
+                        placeholder="Search post"
                     />
                 <Button text="submit" action={(e)=>sortBasedOnSearchTerm(posts,e)} />
                 </div>

@@ -8,6 +8,11 @@
     position: fixed;
 }
 
+#section-header .container {
+    display: flex;
+    align-items: center;
+}
+
 #section-header .action.active {
     border-bottom: solid 0.1rem beige;
 }
@@ -15,4 +20,9 @@
 #section-header .container {
     display: flex;
     justify-content: space-between;
+}
+
+#section-header h1 {
+    font-size: 1.3rem;
+    cursor: pointer;
 }
