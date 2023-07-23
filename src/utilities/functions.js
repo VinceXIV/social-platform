@@ -14,5 +14,5 @@ function randomize(array){
 
 export { randomize }
 
-// Test
-console.log(randomize([1, 2, 3, 4, 5]))
+// TEST
+// console.log(randomize([1, 2, 3, 4, 5]))
