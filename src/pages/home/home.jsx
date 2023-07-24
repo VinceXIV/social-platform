@@ -1,16 +1,23 @@
 import "./home.css"
 import Feed from "../../sections/feed/feed"
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import MyPosts from "../../sections/my-posts/my-posts";
 import Following from "../../sections/following/following";
 import Users from "../../sections/users/users";
 import Sidebar from "../../sections/sidebar/sidebar";
 import { useSelector } from "react-redux";
-import Button from "../../elements/button/button";
+import { useEffect } from "react";
 
 function Home(){
     const location = useLocation()
     const loggedIn = useSelector(state => state.user.loggedIn)
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+        if(!loggedIn){
+            navigate('/home/feed')
+        }
+    }, [loggedIn])
 
     function getSection(){
         if(location.pathname === '/home/feed'){
