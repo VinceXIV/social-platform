@@ -159,10 +159,7 @@ function Post({post}){
                     <ul className="activity" onClick={handleActivityClick}>
                         <li className="activity-item" onClick={handleLikeClick}>
                             {
-                                likedPosts.find(lId => lId === post.id)? 
-                                    <i className="fa-solid fa-heart"></i>
-                                :
-                                <i className="fa-regular fa-heart"></i>
+                                <i className={`${likedPosts.find(lId => lId === post.id)? 'fa-solid': 'fa-regular'} fa-heart`}></i>
                             }
                             {post.likes || 0} {view === 'mobile'? '': 'likes'}
                         </li>
