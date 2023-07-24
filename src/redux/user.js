@@ -26,7 +26,7 @@ export const counterSlice = createSlice({
     },
 
     logout: (state) => {
-      localStorage.clear()
+      localStorage.removeItem('data')
       state.loggedIn = false
       state.userDetails = {}
     },
